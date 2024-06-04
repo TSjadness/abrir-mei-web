@@ -71,4 +71,33 @@ body {
     padding-right: 5%;
     width: auto;
   }
+
+  .custom-reverse{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    width: auto;
+  }
+
+  .custom-image{
+    padding-left: 0%;
+    padding-right: 0%;
+  }
+
+  .custom-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .custom-grid{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }

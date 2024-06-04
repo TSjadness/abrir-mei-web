@@ -1,6 +1,12 @@
 "use client";
 import { Link } from "react-router-dom";
 import { TbLock } from "react-icons/tb";
+import Image from "next/image";
+import logo from "../../images/logo-personagem.jpg";
+import foto from "../../images/foto-negocios.jpg";
+import { FaSellsy,FaChartBar,FaRegHandshake,FaRegStickyNote,FaPeopleArrows,FaLandmark,FaCalculator  } from "react-icons/fa";
+import { FaRegMoneyBill1 } from "react-icons/fa6";
+
 
 export function HomePage() {
   return (
@@ -31,7 +37,7 @@ export function HomePage() {
             </div>
             <div className="w-full flex justify-center items-center mt-5">
               <Link to="/abrir-mei/formulario/">
-                <button className="bg-[#FFEC00] px-12 py-2 rounded-lg text-blue-600 text-lg font-bold hover:bg-yellow-50  ">
+                <button className="bg-[#FFEC00] px-12 py-2 rounded-lg text-blue-600 text-lg font-bold hover:text-black hover:scale-110">
                   ABRIR MEI
                 </button>
               </Link>
@@ -40,10 +46,10 @@ export function HomePage() {
         </div>
       </div>
 
-      <div className="w-full h-full  bg-red-400 pt-24 pb-24 flex justify-center items-center custom-margin">
-        <div className="w-full h-auto  m-auto flex flex-row justify-center gap-4  custom-container">
+      <div className="w-full h-full  bg-white pt-24 pb-24 flex justify-center items-center custom-margin ">
+        <div className="w-full h-auto  m-auto flex flex-row justify-center gap-4  custom-container custom-reverse">
           <div>
-            <div className="max-w-xl p-6 bg-white border border-gray-200 rounded-lg shadow  dark:border-gray-700">
+            <div className="max-w-xl p-6 bg-white custom-card ">
               <div>
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
                   Quem pode abrir um MEI?
@@ -73,10 +79,10 @@ export function HomePage() {
                 E aí, se encaixa nos pré-requisitos? Então você pode ser MEI!
                 Faça a abertura do seu CNPJ MEI agora mesmo.
               </p>
-              <div className="bg-red-600 flex items-center justify-center">
+              <div className="flex items-center ">
                 <a
-                  href="#"
-                  className="inline-flex items-center px-8 py-2 text-sm font-medium text-center justify-center text-white bg-[#00BF00] rounded-lg hover:bg-[#00bf00c8] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
+                  href="/abrir-mei/formulario/"
+                  className="inline-flex items-center px-10 py-2 text-sm font-medium text-center justify-center text-white bg-[#00BF00] rounded-lg hover:bg-[#397c2c] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
                 >
                   ABRIR MEI
                 </a>
@@ -84,38 +90,168 @@ export function HomePage() {
             </div>
           </div>
 
+          <div className="h-[100%] pr-2 pl-2 custom-image">
+            <div className="max-w-3xl p-0  w-full">
+              <Image
+                src={logo}
+                width={600}
+                alt="Abrir-mei-personagem"
+                className="h-[100%]"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full h-full  bg-[#F3F3F3] pt-24 pb-24 flex justify-center items-center custom-margin ">
+        <div className="w-full h-auto  m-auto flex flex-row justify-center gap-4  custom-container ">
           <div>
-            <div className="max-w-2xl p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div className="max-w-xl p-4  custom-card ">
               <div>
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  Quem pode abrir um MEI?
+                <h5 className="mb-2 text-4xl font-bold tracking-tight text-gray-900 ">
+                  Vantagens Para Profissionais E Para Negócios
                 </h5>
               </div>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                Existem alguns pré-requisitos para se formalizar como MEI
-                (Microempreendedor Individual).
-              </p>
-              <a
-                href="#"
-                className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                Abrir Mei
-                <svg
-                  className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 14 10"
+              <div className="max-w-4xl p-0  w-full mt-5">
+                <Image
+                  src={foto}
+                  width={600}
+                  alt="Abrir-mei-personagem"
+                  className="h-[100%] rounded-2xl"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="h-[100%] pr-2 pl-2 custom-image mt-12">
+            <div className="max-w-2xl p-0  w-full">
+              <div className="grid grid-cols-2 md:grid-cols-2 gap-5  w-full">
+                <div
+                  className="flex flex-col items-start justify-center custom-grid
+                "
                 >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M1 5h12m0 0L9 1m4 4L9 9"
-                  />
-                </svg>
-              </a>
+                  <div>
+                    <FaSellsy className="text-4xl" color="#40c0cb" />
+                  </div>
+                  <h1 className="text-[#114463] text-xl font-semibold">
+                    Escale Suas Vendas
+                  </h1>
+                  <p className="text-gray-400 text-sm">
+                    Abra o MEI em poucos passos e escale sua empresa
+                  </p>
+                </div>
+
+                <div
+                  className=" flex flex-col items-start justify-center custom-grid
+                "
+                >
+                  <div>
+                    <FaChartBar className="text-4xl" color="#40c0cb" />
+                  </div>
+                  <h1 className="text-[#114463] text-xl font-semibold">
+                    Clientes Com Resultados
+                  </h1>
+                  <p className="text-gray-400 text-sm">
+                    Nossos clientes conseguem ter resultado rapidamente
+                  </p>
+                </div>
+
+
+                 <div
+                  className="flex flex-col items-start justify-center custom-grid
+                "
+                >
+                  <div>
+                    <FaRegHandshake className="text-4xl" color="#40c0cb" />
+                  </div>
+                  <h1 className="text-[#114463] text-xl font-semibold">
+                    Benefícios Com INSS
+                  </h1>
+                  <p className="text-gray-400 text-sm">
+                    Você pode ter esses benefícios com sua MEI
+                  </p>
+                </div>
+
+
+
+                <div
+                  className="flex flex-col items-start justify-center custom-grid
+                "
+                >
+                  <div>
+                    <FaRegStickyNote className="text-4xl" color="#40c0cb" />
+                  </div>
+                  <h1 className="text-[#114463] text-xl font-semibold">
+                    Emita Notas Fiscais
+                  </h1>
+                  <p className="text-gray-400 text-sm">
+                    Emita notas fiscais com seu CNPJ
+                  </p>
+                </div>
+
+
+                 <div
+                  className="flex flex-col items-start justify-center custom-grid
+                "
+                >
+                  <div>
+                    <FaRegMoneyBill1 className="text-4xl" color="#40c0cb" />
+                  </div>
+                  <h1 className="text-[#114463] text-xl font-semibold">
+                    Empréstimos
+                  </h1>
+                  <p className="text-gray-400 text-sm">
+                    Com um CNPJ, você terá acesso a mais empréstimos
+                  </p>
+                </div>
+
+                <div
+                  className="flex flex-col items-start justify-center custom-grid
+                "
+                >
+                  <div>
+                    <FaPeopleArrows className="text-4xl" color="#40c0cb" />
+                  </div>
+                  <h1 className="text-[#114463] text-xl font-semibold">
+                    Promoção De Parcerias
+                  </h1>
+                  <p className="text-gray-400 text-sm">
+                    Você consegue parcerias com outros CNPJ
+                  </p>
+                </div>
+
+
+                <div
+                  className="flex flex-col items-start justify-center custom-grid
+                "
+                >
+                  <div>
+                    <FaLandmark  className="text-4xl" color="#40c0cb" />
+                  </div>
+                  <h1 className="text-[#114463] text-xl font-semibold">
+                    Conta PJ
+                  </h1>
+                  <p className="text-gray-400 text-sm">
+                    PJ com gerenciamento em qualquer banco
+                  </p>
+                </div>
+
+
+                  <div
+                  className="flex flex-col items-start justify-center custom-grid
+                "
+                >
+                  <div>
+                    <FaCalculator className="text-4xl" color="#40c0cb" />
+                  </div>
+                  <h1 className="text-[#114463] text-xl font-semibold">
+                    Não Gaste Com Contador
+                  </h1>
+                  <p className="text-gray-400 text-sm">
+                    Por aqui, tudo é mais fácil e conseguido pela palma da sua mão.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -10,7 +10,7 @@ export function Footer() {
                       href="/"
                       className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse"
                     >
-                      <Image src={logo} className="w-72" alt="Flowbite Logo" />
+                      <Image src={logo} className="w-60" alt="Flowbite Logo" />
                     </a>
           <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-[#1EA230] sm:mb-0 ">
             <li>
