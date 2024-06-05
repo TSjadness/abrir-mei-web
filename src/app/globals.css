@@ -72,6 +72,10 @@ body {
     width: auto;
   }
 
+  .custom-accordion{
+    width: auto;
+  }
+
   .custom-reverse{
     display: flex;
     flex-direction: column-reverse;
