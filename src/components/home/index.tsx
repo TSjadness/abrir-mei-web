@@ -70,7 +70,6 @@ export function HomePage() {
     },
   ];
 
-
   return (
     <>
       <div className="w-full h-full  bg-blue-700 pt-24 pb-24 flex justify-center items-center custom-margin">
@@ -142,12 +141,11 @@ export function HomePage() {
                 Faça a abertura do seu CNPJ MEI agora mesmo.
               </p>
               <div className="flex items-center ">
-                <a
-                  href="/abrir-mei/formulario/"
-                  className="inline-flex items-center px-10 py-2 text-sm font-medium text-center justify-center text-white bg-[#00BF00] rounded-lg hover:bg-[#397c2c] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
-                >
-                  ABRIR MEI
-                </a>
+                <Link to="/abrir-mei/formulario/">
+                  <button className="inline-flex items-center px-10 py-2 text-sm font-medium text-center justify-center text-white bg-[#3e8e30] rounded-lg hover:bg-[#397c2c] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                    ABRIR MEI
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -481,39 +479,6 @@ export function HomePage() {
           </div>
         </div>
       </div>
-
-      {/* <div className="w-full h-full  bg-white pt-24 pb-24 flex justify-center items-center custom-final">
-        <div className="w-auto h-auto m-auto flex flex-col items-center justify-center gap-4 p-8 border-2 shadow-2xl rounded-2xl  custom-container">
-          <div className="w-auto flex flex-col gap-8 custom-h1 ">
-            <h1 className="text-[#808080] font-bold text-3xl w-full">
-              ESTE NÃO É UM SITE GOVERNAMENTAL!
-            </h1>
-          </div>
-
-          <div className="max-w-5xl flex flex-col rounded-lg p-5 custom-h1  ">
-            <span className="text-justify sm:text-xs">
-              O serviço prestado através do site{" "}
-              <a
-                href="#"
-                className="cursor-pointer underline underline-offset-1 text-blue-500"
-              >
-                https://abrirmeionline.org
-              </a>{" "}
-              é um serviço privado e opcional. O registro MEI, baixa no CNPJ do
-              MEI e alterações no cadastro do MEI podem ser feitos gratuitamente
-              e sem o acompanhamento profissional deste site, através da
-              plataforma governamental{" "}
-              <a
-                href="https://www.gov.br/pt-br"
-                target="_blank"
-                className="cursor-pointer underline underline-offset-1 text-blue-500"
-              >
-                gov.br.
-              </a>
-            </span>
-          </div>
-        </div>
-      </div> */}
     </>
   );
 }
