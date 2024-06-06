@@ -14,8 +14,14 @@ import {
   FaCalculator,
 } from "react-icons/fa";
 import { FaRegMoneyBill1 } from "react-icons/fa6";
+import { useState } from "react";
 
 export function HomePage() {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggleAccordion = (index: any) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
   return (
     <>
       <div className="w-full h-full  bg-blue-700 pt-24 pb-24 flex justify-center items-center custom-margin">
@@ -323,39 +329,37 @@ export function HomePage() {
         </div>
       </div>
 
-      <div className="w-full h-full  bg-red-300 pt-24 pb-24 flex flex-col justify-center items-center pr-2 pl-2">
+      <div className="w-full h-full bg-white pt-24 pb-24 flex flex-col justify-center items-center pr-2 pl-2">
         <div className="w-auto custom-container mb-12">
-          <h1 className="text-3xl font-bold text-white ">
+          <h1 className="text-3xl font-bold text-black">
             Perguntas Frequentes
           </h1>
         </div>
 
-        <div
-          className="w-[75rem] xs:w-auto  lg:max-w-4xl custom-accordion"
-        
-        >
-          <h2 id="accordion-collapse-heading-1 bg-yellow-400">
+        <div className="w-[75rem] xs:w-auto lg:max-w-4xl custom-accordion">
+          {/* 1 */}
+          <h2 id="accordion-collapse-heading-1">
             <button
               type="button"
-              className="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200   hover:bg-gray-100 "
-              data-accordion-target="#accordion-collapse-body-1"
-              aria-expanded="true"
+              className="flex items-center justify-between w-full p-5 font-medium text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 hover:bg-gray-100"
+              onClick={() => toggleAccordion(1)}
+              aria-expanded={openIndex === 1}
               aria-controls="accordion-collapse-body-1"
             >
-              <span>What is Flowbite?</span>
+              <span>COMO EMITIR NOTA FISCAL MEI?</span>
               <svg
-                data-accordion-icon
-                className="w-3 h-3 rotate-180 shrink-0"
-                aria-hidden="true"
+                className={`w-3 h-3 shrink-0 ${
+                  openIndex === 1 ? "rotate-180" : ""
+                }`}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 10 6"
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M9 5 5 1 1 5"
                 />
               </svg>
@@ -363,50 +367,47 @@ export function HomePage() {
           </h2>
           <div
             id="accordion-collapse-body-1"
-            className="hidden"
+            className={`${openIndex === 1 ? "" : "hidden"}`}
             aria-labelledby="accordion-collapse-heading-1"
           >
-            <div className="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-              <p className="mb-2 text-gray-500 dark:text-gray-400">
-                Flowbite is an open-source library of interactive components
-                built on top of Tailwind CSS including buttons, dropdowns,
-                modals, navbars, and more.
-              </p>
-              <p className="text-gray-500 dark:text-gray-400">
-                Check out this guide to learn how to{" "}
-                <a
-                  href="/docs/getting-started/introduction/"
-                  className="text-blue-600 dark:text-blue-500 hover:underline"
-                >
-                  get started
-                </a>{" "}
-                and start developing websites even faster with components on top
-                of Tailwind CSS.
+            <div className="p-5 border border-b-0 border-gray-200">
+              <p className="mb-2 text-gray-500 text-justify">
+                O MEI não é obrigado a emitir nota fiscal para pessoas físicas,
+                em qualquer situação. Agora, em casos de venda ou prestação de
+                serviços para pessoas jurídicas, é obrigatória a emissão da nota
+                fiscal. Em algumas cidades do Brasil existe a possibilidade da
+                emissão da Nota Fiscal Eletrônica, o que facilita bastante este
+                processo. Caso você precise emitir nota fiscal, consulte a
+                prefeitura da sua cidade para saber qual o procedimento na sua
+                região. Se você quer começar um negócio ou já trabalha por conta
+                própria e fatura até R$ 81 mil por ano, você pode ser um MEI
+                (Microempreendedor Individual).
               </p>
             </div>
           </div>
+          {/* 2 */}
           <h2 id="accordion-collapse-heading-2">
             <button
               type="button"
-              className="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
-              data-accordion-target="#accordion-collapse-body-2"
-              aria-expanded="false"
+              className="flex items-center justify-between w-full p-5 font-medium text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100 gap-3"
+              onClick={() => toggleAccordion(2)}
+              aria-expanded={openIndex === 2}
               aria-controls="accordion-collapse-body-2"
             >
-              <span>Is there a Figma file available?</span>
+              <span>O QUE É MEI?</span>
               <svg
-                data-accordion-icon
-                className="w-3 h-3 rotate-180 shrink-0"
-                aria-hidden="true"
+                className={`w-3 h-3 shrink-0 ${
+                  openIndex === 2 ? "rotate-180" : ""
+                }`}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 10 6"
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M9 5 5 1 1 5"
                 />
               </svg>
@@ -414,52 +415,43 @@ export function HomePage() {
           </h2>
           <div
             id="accordion-collapse-body-2"
-            className="hidden"
+            className={`${openIndex === 2 ? "" : "hidden"}`}
             aria-labelledby="accordion-collapse-heading-2"
           >
-            <div className="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
-              <p className="mb-2 text-gray-500 dark:text-gray-400">
-                Flowbite is first conceptualized and designed using the Figma
-                software so everything you see in the library has a design
-                equivalent in our Figma file.
-              </p>
-              <p className="text-gray-500 dark:text-gray-400">
-                Check out the{" "}
-                <a
-                  href="https://flowbite.com/figma/"
-                  className="text-blue-600 dark:text-blue-500 hover:underline"
-                >
-                  Figma design system
-                </a>{" "}
-                based on the utility classes from Tailwind CSS and components
-                from Flowbite.
+            <div className="p-5 border border-b-0 border-gray-200">
+              <p className="mb-2 text-gray-500 text-justify">
+                MEI significa Microeemprendedor Individual, ou seja, um
+                profissional autônomo. Quando você se cadastra como um, você
+                passa a ter CNPJ, ou seja, tem facilidades com a abertura de
+                conta bancária, no pedido de empréstimos e na emissão de notas
+                fiscais, além de ter obrigações e direitos de uma pessoa
+                jurídica.
               </p>
             </div>
           </div>
+          {/* 3 */}
           <h2 id="accordion-collapse-heading-3">
             <button
               type="button"
-              className="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
-              data-accordion-target="#accordion-collapse-body-3"
-              aria-expanded="false"
+              className="flex items-center justify-between w-full p-5 font-medium text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100 gap-3"
+              onClick={() => toggleAccordion(3)}
+              aria-expanded={openIndex === 3}
               aria-controls="accordion-collapse-body-3"
             >
-              <span>
-                What are the differences between Flowbite and Tailwind UI?
-              </span>
+              <span>QUAIS OS BENEFÍCIOS DE SER MEI?</span>
               <svg
-                data-accordion-icon
-                className="w-3 h-3 rotate-180 shrink-0"
-                aria-hidden="true"
+                className={`w-3 h-3 shrink-0 ${
+                  openIndex === 3 ? "rotate-180" : ""
+                }`}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 10 6"
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M9 5 5 1 1 5"
                 />
               </svg>
@@ -467,44 +459,96 @@ export function HomePage() {
           </h2>
           <div
             id="accordion-collapse-body-3"
-            className="hidden"
+            className={`${openIndex === 3 ? "" : "hidden"}`}
             aria-labelledby="accordion-collapse-heading-3"
           >
-            <div className="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
-              <p className="mb-2 text-gray-500 dark:text-gray-400">
-                The main difference is that the core components from Flowbite
-                are open source under the MIT license, whereas Tailwind UI is a
-                paid product. Another difference is that Flowbite relies on
-                smaller and standalone components, whereas Tailwind UI offers
-                sections of pages.
+            <div className="p-5 border border-t-0 border-gray-200">
+              <p className="mb-2 text-gray-500  text-justify flex flex-col">
+                <p>1. Regularização sem Burocracia</p>
+                <p>2. Cobertura Previdenciária</p>
+                <p>3. Acesso a Serviços Bancários</p>
+                <p>4. Emissão de Nota Fiscal e possibilidade de Venda</p>
               </p>
-              <p className="mb-2 text-gray-500 dark:text-gray-400">
-                However, we actually recommend using both Flowbite, Flowbite
-                Pro, and even Tailwind UI as there is no technical reason
-                stopping you from using the best of two worlds.
+            </div>
+          </div>
+          {/* 4 */}
+          <h2 id="accordion-collapse-heading-4">
+            <button
+              type="button"
+              className="flex items-center justify-between w-full p-5 font-medium text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100 gap-3"
+              onClick={() => toggleAccordion(4)}
+              aria-expanded={openIndex === 4}
+              aria-controls="accordion-collapse-body-2"
+            >
+              <span>QUEM PODE SER MEI?</span>
+              <svg
+                className={`w-3 h-3 shrink-0 ${
+                  openIndex === 4 ? "rotate-180" : ""
+                }`}
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 10 6"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M9 5 5 1 1 5"
+                />
+              </svg>
+            </button>
+          </h2>
+          <div
+            id="accordion-collapse-body-2"
+            className={`${openIndex === 4 ? "" : "hidden"}`}
+            aria-labelledby="accordion-collapse-heading-2"
+          >
+            <div className="p-5 border border-b-0 border-gray-200">
+              <p className="mb-2 text-gray-500 text-justify">
+                Pode se formalizar como MEI todo trabalhador autônomo e dono de
+                pequeno negócio que atende aos seguintes requisitos: Faturar até
+                R$ 81 mil ao ano (R$ 6.750 por mês).
               </p>
-              <p className="mb-2 text-gray-500 dark:text-gray-400">
-                Learn more about these technologies:
+            </div>
+          </div>
+          {/* 5 */}
+          <h2 id="accordion-collapse-heading-5">
+            <button
+              type="button"
+              className="flex items-center justify-between w-full p-5 font-medium text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100 gap-3"
+              onClick={() => toggleAccordion(5)}
+              aria-expanded={openIndex === 5}
+              aria-controls="accordion-collapse-body-3"
+            >
+              <span>QUANTO CUSTA ABRIR UM MEI?</span>
+              <svg
+                className={`w-3 h-3 shrink-0 ${
+                  openIndex === 5 ? "rotate-180" : ""
+                }`}
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 10 6"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M9 5 5 1 1 5"
+                />
+              </svg>
+            </button>
+          </h2>
+          <div
+            id="accordion-collapse-body-5"
+            className={`${openIndex === 5 ? "" : "hidden"}`}
+            aria-labelledby="accordion-collapse-heading-3"
+          >
+            <div className="p-5 border border-t-0 border-gray-200">
+              <p className="mb-2 text-gray-500 text-justify">
+                O nosso serviço de abertura de MEI custa apenas R$193,00.
               </p>
-              <ul className="ps-5 text-gray-500 list-disc dark:text-gray-400">
-                <li>
-                  <a
-                    href="https://flowbite.com/pro/"
-                    className="text-blue-600 dark:text-blue-500 hover:underline"
-                  >
-                    Flowbite Pro
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://tailwindui.com/"
-                    rel="nofollow"
-                    className="text-blue-600 dark:text-blue-500 hover:underline"
-                  >
-                    Tailwind UI
-                  </a>
-                </li>
-              </ul>
             </div>
           </div>
         </div>
