@@ -15,6 +15,7 @@ import {
 } from "react-icons/fa";
 import { FaRegMoneyBill1 } from "react-icons/fa6";
 import { useState } from "react";
+import { CSSTransition } from "react-transition-group";
 
 export function HomePage() {
   const [openIndex, setOpenIndex] = useState(null);
@@ -22,6 +23,54 @@ export function HomePage() {
   const toggleAccordion = (index: any) => {
     setOpenIndex(openIndex === index ? null : index);
   };
+
+  const accordionData = [
+    {
+      question: "COMO EMITIR NOTA FISCAL MEI?",
+      answer: `O MEI não é obrigado a emitir nota fiscal para pessoas físicas,
+      em qualquer situação. Agora, em casos de venda ou prestação de
+      serviços para pessoas jurídicas, é obrigatória a emissão da nota
+      fiscal. Em algumas cidades do Brasil existe a possibilidade da
+      emissão da Nota Fiscal Eletrônica, o que facilita bastante este
+      processo. Caso você precise emitir nota fiscal, consulte a
+      prefeitura da sua cidade para saber qual o procedimento na sua
+      região. Se você quer começar um negócio ou já trabalha por conta
+      própria e fatura até R$ 81 mil por ano, você pode ser um MEI
+      (Microempreendedor Individual).`,
+    },
+    {
+      question: "O QUE É MEI?",
+      answer: `MEI significa Microeemprendedor Individual, ou seja, um
+      profissional autônomo. Quando você se cadastra como um, você
+      passa a ter CNPJ, ou seja, tem facilidades com a abertura de
+      conta bancária, no pedido de empréstimos e na emissão de notas
+      fiscais, além de ter obrigações e direitos de uma pessoa
+      jurídica.`,
+    },
+    {
+      question: "QUAIS OS BENEFÍCIOS DE SER MEI?",
+      answer: (
+        <ul className="list-disc pl-5">
+          <li>Regularização sem Burocracia</li>
+          <li>Cobertura Previdenciária</li>
+          <li>Acesso a Serviços Bancários</li>
+          <li>Emissão de Nota Fiscal e possibilidade de Venda</li>
+        </ul>
+      ),
+    },
+    {
+      question: "QUEM PODE SER MEI?",
+      answer: `Pode se formalizar como MEI todo trabalhador autônomo e dono de
+      pequeno negócio que atende aos seguintes requisitos: Faturar até
+      R$ 81 mil ao ano (R$ 6.750 por mês).`,
+    },
+    {
+      question: "QUANTO CUSTA ABRIR UM MEI?",
+      answer: `O nosso serviço de abertura de MEI custa apenas R$193,00.`,
+    },
+  ];
+
+
   return (
     <>
       <div className="w-full h-full  bg-blue-700 pt-24 pb-24 flex justify-center items-center custom-margin">
@@ -337,222 +386,134 @@ export function HomePage() {
         </div>
 
         <div className="w-[75rem] xs:w-auto lg:max-w-4xl custom-accordion">
-          {/* 1 */}
-          <h2 id="accordion-collapse-heading-1">
-            <button
-              type="button"
-              className="flex items-center justify-between w-full p-5 font-medium text-gray-500 border border-b-0 border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 hover:bg-gray-100"
-              onClick={() => toggleAccordion(1)}
-              aria-expanded={openIndex === 1}
-              aria-controls="accordion-collapse-body-1"
-            >
-              <span>COMO EMITIR NOTA FISCAL MEI?</span>
-              <svg
-                className={`w-3 h-3 shrink-0 ${
-                  openIndex === 1 ? "rotate-180" : ""
-                }`}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 10 6"
+          {accordionData.map((item, index) => (
+            <div key={index}>
+              <h2 id={`accordion-collapse-heading-${index + 1}`}>
+                <button
+                  type="button"
+                  className={`flex items-center justify-between w-full p-5 font-medium text-gray-500 border ${
+                    index !== accordionData.length - 1 ? "border-b-0" : ""
+                  } border-gray-200 ${
+                    index === 0 ? "rounded-t-xl" : ""
+                  } focus:ring-4 focus:ring-gray-200 hover:bg-gray-100`}
+                  onClick={() => toggleAccordion(index + 1)}
+                  aria-expanded={openIndex === index + 1}
+                  aria-controls={`accordion-collapse-body-${index + 1}`}
+                >
+                  <span>{item.question}</span>
+                  <svg
+                    className={`w-3 h-3 shrink-0 ${
+                      openIndex === index + 1 ? "rotate-180" : ""
+                    }`}
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 10 6"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 5 5 1 1 5"
+                    />
+                  </svg>
+                </button>
+              </h2>
+              <CSSTransition
+                in={openIndex === index + 1}
+                timeout={300}
+                classNames="accordion"
+                unmountOnExit
               >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M9 5 5 1 1 5"
-                />
-              </svg>
-            </button>
-          </h2>
-          <div
-            id="accordion-collapse-body-1"
-            className={`${openIndex === 1 ? "" : "hidden"}`}
-            aria-labelledby="accordion-collapse-heading-1"
-          >
-            <div className="p-5 border border-b-0 border-gray-200">
-              <p className="mb-2 text-gray-500 text-justify">
-                O MEI não é obrigado a emitir nota fiscal para pessoas físicas,
-                em qualquer situação. Agora, em casos de venda ou prestação de
-                serviços para pessoas jurídicas, é obrigatória a emissão da nota
-                fiscal. Em algumas cidades do Brasil existe a possibilidade da
-                emissão da Nota Fiscal Eletrônica, o que facilita bastante este
-                processo. Caso você precise emitir nota fiscal, consulte a
-                prefeitura da sua cidade para saber qual o procedimento na sua
-                região. Se você quer começar um negócio ou já trabalha por conta
-                própria e fatura até R$ 81 mil por ano, você pode ser um MEI
-                (Microempreendedor Individual).
-              </p>
+                <div
+                  id={`accordion-collapse-body-${index + 1}`}
+                  aria-labelledby={`accordion-collapse-heading-${index + 1}`}
+                >
+                  <div
+                    className={`p-5 border ${
+                      index !== accordionData.length - 1 ? "border-b-0" : ""
+                    } border-gray-200`}
+                  >
+                    <p className="mb-2 text-gray-500 text-justify">
+                      {item.answer}
+                    </p>
+                  </div>
+                </div>
+              </CSSTransition>
             </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="w-full h-auto  bg-white pt-24 pb-24 flex justify-center items-center custom-margin ">
+        <div className=" flex flex-col items-center justify-center gap-8 lg:flex-col rounded-lg p-5 border-2 shadow-xl">
+          <div className="w-auto custom-container">
+            <h1 className="text-[#808080] font-bold text-3xl w-full">
+              ESTE NÃO É UM SITE GOVERNAMENTAL!
+            </h1>
           </div>
-          {/* 2 */}
-          <h2 id="accordion-collapse-heading-2">
-            <button
-              type="button"
-              className="flex items-center justify-between w-full p-5 font-medium text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100 gap-3"
-              onClick={() => toggleAccordion(2)}
-              aria-expanded={openIndex === 2}
-              aria-controls="accordion-collapse-body-2"
-            >
-              <span>O QUE É MEI?</span>
-              <svg
-                className={`w-3 h-3 shrink-0 ${
-                  openIndex === 2 ? "rotate-180" : ""
-                }`}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 10 6"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M9 5 5 1 1 5"
-                />
-              </svg>
-            </button>
-          </h2>
-          <div
-            id="accordion-collapse-body-2"
-            className={`${openIndex === 2 ? "" : "hidden"}`}
-            aria-labelledby="accordion-collapse-heading-2"
-          >
-            <div className="p-5 border border-b-0 border-gray-200">
-              <p className="mb-2 text-gray-500 text-justify">
-                MEI significa Microeemprendedor Individual, ou seja, um
-                profissional autônomo. Quando você se cadastra como um, você
-                passa a ter CNPJ, ou seja, tem facilidades com a abertura de
-                conta bancária, no pedido de empréstimos e na emissão de notas
-                fiscais, além de ter obrigações e direitos de uma pessoa
-                jurídica.
-              </p>
-            </div>
-          </div>
-          {/* 3 */}
-          <h2 id="accordion-collapse-heading-3">
-            <button
-              type="button"
-              className="flex items-center justify-between w-full p-5 font-medium text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100 gap-3"
-              onClick={() => toggleAccordion(3)}
-              aria-expanded={openIndex === 3}
-              aria-controls="accordion-collapse-body-3"
-            >
-              <span>QUAIS OS BENEFÍCIOS DE SER MEI?</span>
-              <svg
-                className={`w-3 h-3 shrink-0 ${
-                  openIndex === 3 ? "rotate-180" : ""
-                }`}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 10 6"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M9 5 5 1 1 5"
-                />
-              </svg>
-            </button>
-          </h2>
-          <div
-            id="accordion-collapse-body-3"
-            className={`${openIndex === 3 ? "" : "hidden"}`}
-            aria-labelledby="accordion-collapse-heading-3"
-          >
-            <div className="p-5 border border-t-0 border-gray-200">
-              <p className="mb-2 text-gray-500  text-justify flex flex-col">
-                <p>1. Regularização sem Burocracia</p>
-                <p>2. Cobertura Previdenciária</p>
-                <p>3. Acesso a Serviços Bancários</p>
-                <p>4. Emissão de Nota Fiscal e possibilidade de Venda</p>
-              </p>
-            </div>
-          </div>
-          {/* 4 */}
-          <h2 id="accordion-collapse-heading-4">
-            <button
-              type="button"
-              className="flex items-center justify-between w-full p-5 font-medium text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100 gap-3"
-              onClick={() => toggleAccordion(4)}
-              aria-expanded={openIndex === 4}
-              aria-controls="accordion-collapse-body-2"
-            >
-              <span>QUEM PODE SER MEI?</span>
-              <svg
-                className={`w-3 h-3 shrink-0 ${
-                  openIndex === 4 ? "rotate-180" : ""
-                }`}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 10 6"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M9 5 5 1 1 5"
-                />
-              </svg>
-            </button>
-          </h2>
-          <div
-            id="accordion-collapse-body-2"
-            className={`${openIndex === 4 ? "" : "hidden"}`}
-            aria-labelledby="accordion-collapse-heading-2"
-          >
-            <div className="p-5 border border-b-0 border-gray-200">
-              <p className="mb-2 text-gray-500 text-justify">
-                Pode se formalizar como MEI todo trabalhador autônomo e dono de
-                pequeno negócio que atende aos seguintes requisitos: Faturar até
-                R$ 81 mil ao ano (R$ 6.750 por mês).
-              </p>
-            </div>
-          </div>
-          {/* 5 */}
-          <h2 id="accordion-collapse-heading-5">
-            <button
-              type="button"
-              className="flex items-center justify-between w-full p-5 font-medium text-gray-500 border border-gray-200 focus:ring-4 focus:ring-gray-200 hover:bg-gray-100 gap-3"
-              onClick={() => toggleAccordion(5)}
-              aria-expanded={openIndex === 5}
-              aria-controls="accordion-collapse-body-3"
-            >
-              <span>QUANTO CUSTA ABRIR UM MEI?</span>
-              <svg
-                className={`w-3 h-3 shrink-0 ${
-                  openIndex === 5 ? "rotate-180" : ""
-                }`}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 10 6"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M9 5 5 1 1 5"
-                />
-              </svg>
-            </button>
-          </h2>
-          <div
-            id="accordion-collapse-body-5"
-            className={`${openIndex === 5 ? "" : "hidden"}`}
-            aria-labelledby="accordion-collapse-heading-3"
-          >
-            <div className="p-5 border border-t-0 border-gray-200">
-              <p className="mb-2 text-gray-500 text-justify">
-                O nosso serviço de abertura de MEI custa apenas R$193,00.
-              </p>
+
+          <div className="max-w-6xl p-0 w-full pl-2 pr-2 ">
+            <div className="flex flex-row gap-8 w-full items-center justify-center custom-container">
+              <div className="max-w-5xl p-5 text-white flex items-center justify-center">
+                <span className="text-justify text-xl text-[#808080]">
+                  O serviço prestado através do site{" "}
+                  <a
+                    href="#"
+                    className="cursor-pointer underline underline-offset-1 text-blue-500"
+                  >
+                    https://abrirmeionline.org
+                  </a>{" "}
+                  é um serviço privado e opcional. O registro MEI, baixa no CNPJ
+                  do MEI e alterações no cadastro do MEI podem ser feitos
+                  gratuitamente e sem o acompanhamento profissional deste site,
+                  através da plataforma governamental{" "}
+                  <a
+                    href="https://www.gov.br/pt-br"
+                    target="_blank"
+                    className="cursor-pointer underline underline-offset-1 text-blue-500"
+                  >
+                    gov.br.
+                  </a>
+                </span>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* <div className="w-full h-full  bg-white pt-24 pb-24 flex justify-center items-center custom-final">
+        <div className="w-auto h-auto m-auto flex flex-col items-center justify-center gap-4 p-8 border-2 shadow-2xl rounded-2xl  custom-container">
+          <div className="w-auto flex flex-col gap-8 custom-h1 ">
+            <h1 className="text-[#808080] font-bold text-3xl w-full">
+              ESTE NÃO É UM SITE GOVERNAMENTAL!
+            </h1>
+          </div>
+
+          <div className="max-w-5xl flex flex-col rounded-lg p-5 custom-h1  ">
+            <span className="text-justify sm:text-xs">
+              O serviço prestado através do site{" "}
+              <a
+                href="#"
+                className="cursor-pointer underline underline-offset-1 text-blue-500"
+              >
+                https://abrirmeionline.org
+              </a>{" "}
+              é um serviço privado e opcional. O registro MEI, baixa no CNPJ do
+              MEI e alterações no cadastro do MEI podem ser feitos gratuitamente
+              e sem o acompanhamento profissional deste site, através da
+              plataforma governamental{" "}
+              <a
+                href="https://www.gov.br/pt-br"
+                target="_blank"
+                className="cursor-pointer underline underline-offset-1 text-blue-500"
+              >
+                gov.br.
+              </a>
+            </span>
+          </div>
+        </div>
+      </div> */}
     </>
   );
 }
