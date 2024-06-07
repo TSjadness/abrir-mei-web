@@ -8,6 +8,8 @@ import React, { ReactNode } from "react";
 import NavBar from "@/components/navbar/Nav";
 import { Footer } from "@/components/footer/Footer";
 import { HomePage } from "@/components/home";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,18 +25,15 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <html lang="pt-BR">
-        <body className={inter.className}>
-          <header>
-            <NavBar />
-          </header>
-
-          <Providers>{children}</Providers>
+      <html lang="pt-BR" className={inter.className}>
+        <body className="bg-white text-base ">
+          <Providers>
+            <NavBar /> 
+            {children}
+            <ToastContainer />
+            <Footer />
+            </Providers>
         </body>
-
-        <footer>
-          <Footer />
-        </footer>
       </html>
     </>
   );
