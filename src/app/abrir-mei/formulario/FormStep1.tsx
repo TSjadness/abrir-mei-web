@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { dataSchemaStep1, DataSchemaStep1 } from "./common";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { allMasks } from "@/utils/masks";
 
 interface Step1Props extends StepProps {
   data: any;
@@ -12,8 +13,20 @@ const FormStep1: React.FC<Step1Props> = ({ nextStep, data }) => {
     register,
     handleSubmit,
     reset,
+    setValue,
+    watch,
     formState: { errors },
   } = useForm<DataSchemaStep1>({ resolver: zodResolver(dataSchemaStep1) });
+
+  const cpfValue = watch("cpf");
+  const rgValue = watch("rg");
+  const phoneValue = watch("phone");
+
+  useEffect(() => {
+    setValue("cpf", allMasks.maskCPF(cpfValue));
+    setValue("rg", allMasks.maskRG(rgValue));
+    setValue("phone", allMasks.maskPhone(phoneValue));
+  }, [cpfValue, rgValue, phoneValue, setValue]);
 
   const onSubmit = (data: any) => {
     nextStep(data);
@@ -21,14 +34,14 @@ const FormStep1: React.FC<Step1Props> = ({ nextStep, data }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className="">
       <div className="mb-5">
-        <div className="text-3xl font-bold mb-10">
+        <div className="text-3xl font-bold mb-10 custom-step">
           <h2>Informações Pessoais</h2>
         </div>
       </div>
-      <div className="space-y-8 pt-2 ">
-        <div className="mb-7 flex flex-row justify-between gap-5 items-center">
+      <div className="space-y-8 pt-2  ">
+        <div className="mb-7 flex flex-row justify-between gap-5 items-center custom-step">
           <div className=" w-full">
             <label htmlFor="" className="font-bold">
               Nome Completo <span className="text-red-700">*</span>
@@ -38,8 +51,11 @@ const FormStep1: React.FC<Step1Props> = ({ nextStep, data }) => {
               id="name"
               placeholder="Digite seu nome completo"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
-              {...register("name")}
+              {...(register("name") ?? "")}
             />
+            {errors.name && (
+              <span className="text-red-600">{errors.name.message}</span>
+            )}
           </div>
 
           <div className=" w-full">
@@ -47,26 +63,27 @@ const FormStep1: React.FC<Step1Props> = ({ nextStep, data }) => {
               Endereço de e-mail <span className="text-red-700">*</span>
             </label>
             <input
-              type="email"
               id="email"
               placeholder="Digite seu e-mail"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
               {...register("email")}
             />
+            {errors.email && (
+              <span className="text-red-600">{errors.email.message}</span>
+            )}
           </div>
         </div>
 
-        <div className="mb-7 flex flex-row justify-between gap-5 items-center">
+        <div className="mb-7 flex flex-row justify-between gap-5 items-center custom-step">
           <div className=" w-full">
             <label htmlFor="" className="font-bold">
               CPF <span className="text-red-700">*</span>
             </label>
             <input
-              type="text"
-              id="name"
+              id="cpf"
               placeholder="Digite seu CPF"
+              {...register("cpf")}
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
-              {...register("name")}
             />
           </div>
 
@@ -76,39 +93,42 @@ const FormStep1: React.FC<Step1Props> = ({ nextStep, data }) => {
               <span className="text-red-700">*</span>
             </label>
             <input
-              type="tel"
-              id="email"
-              placeholder="(99) 9 9999-9999"
+              id="phone"
+              placeholder="(79) 9 9999-9999"
+              maxLength={15}
+              {...register("phone")}
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
-              {...register("email")}
             />
           </div>
         </div>
 
-        <div className="mb-7 flex flex-row justify-between gap-5 items-center">
+        <div className="mb-7 flex flex-row justify-between gap-5 items-center custom-step">
           <div className=" w-full">
             <label htmlFor="" className="font-bold">
               RG / Identidade <span className="text-red-700">*</span>
             </label>
             <input
               type="text"
-              id="name"
+              id="rg"
               placeholder="Digite seu RG"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
-              {...register("name")}
+              {...register("rg")}
             />
           </div>
 
           <div className=" w-full">
             <label htmlFor="" className="font-bold">
-              Órgão Emissor do RG
-              <span className="text-red-700">*</span>
+              Órgão Emissor do RG <span className="text-red-700">*</span>
             </label>
-            <select className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2">
+            <select
+              id="rgIssuer"
+              {...register("rgIssuer")}
+              className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
+            >
               <option value="">Selecione</option>
-              <option value="">SSP</option>
-              <option value="">DETRAN</option>
-              <option value="">Outros</option>
+              <option value="SSP">SSP</option>
+              <option value="DETRAN">DETRAN</option>
+              <option value="Outros">Outros</option>
             </select>
           </div>
 
@@ -116,70 +136,72 @@ const FormStep1: React.FC<Step1Props> = ({ nextStep, data }) => {
             <label htmlFor="" className="font-bold">
               Estado de Emissão <span className="text-red-700">*</span>
             </label>
-            <select className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2">
+            <select
+              id="rgState"
+              {...register("rgState")}
+              className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
+            >
               <option value="">Selecione</option>
-              <option value="">AC</option>
-              <option value="">AL</option>
-              <option value="">AP</option>
-              <option value="">AM</option>
-              <option value="">BA</option>
-              <option value="">CE</option>
-              <option value="">DF</option>
-              <option value="">ES</option>
-              <option value="">GO</option>
-              <option value="">MA</option>
-              <option value="">MT</option>
-              <option value="">MS</option>
-              <option value="">MG</option>
-              <option value="">PA</option>
-              <option value="">PB</option>
-              <option value="">PR</option>
-              <option value="">PE</option>
-              <option value="">PI</option>
-              <option value="">RJ</option>
-              <option value="">RN</option>
-              <option value="">RS</option>
-              <option value="">RO</option>
-              <option value="">RR</option>
-              <option value="">SC</option>
-              <option value="">SP</option>
-              <option value="">SE</option>
-              <option value="">TO</option>
+              <option value="Acre">AC</option>
+              <option value="Alagoas">AL</option>
+              <option value="Amapá">AP</option>
+              <option value="Amazonas">AM</option>
+              <option value="Bahia">BA</option>
+              <option value="Ceará">CE</option>
+              <option value="Distrito Federal">DF</option>
+              <option value="Espírito Santo">ES</option>
+              <option value="Goiás">GO</option>
+              <option value="Maranhão">MA</option>
+              <option value="Mato Grosso">MT</option>
+              <option value="Mato Grosso do Sul">MS</option>
+              <option value="Minas Gerais">MG</option>
+              <option value="Pará">PA</option>
+              <option value="Paraíba">PB</option>
+              <option value="Paraná">PR</option>
+              <option value="Pernambuco">PE</option>
+              <option value="Piauí">PI</option>
+              <option value="Rio de Janeiro">RJ</option>
+              <option value="Rio Grande do Norte">RN</option>
+              <option value="Rio Grande do Sul">RS</option>
+              <option value="Rondônia">RO</option>
+              <option value="Roraima">RR</option>
+              <option value="Santa Catarina">SC</option>
+              <option value="São Paulo">SP</option>
+              <option value="Sergipe">SE</option>
+              <option value="Tocantins">TO</option>
             </select>
           </div>
         </div>
 
-        <div className="mb-7 flex flex-row justify-between gap-5 items-center">
+        <div className="mb-7 flex flex-row justify-between gap-5 items-center custom-step">
           <div className=" w-full">
             <label htmlFor="" className="font-bold">
               Nome completo da Mãe <span className="text-red-700">*</span>
             </label>
             <input
               type="text"
-              id="name"
-              placeholder="Digite seu RG"
+              id="motherName"
+              placeholder="Digite o nome completo da sua mãe"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
-              {...register("name")}
+              {...register("motherName")}
             />
           </div>
 
           <div className=" w-full">
             <label htmlFor="" className="font-bold">
-              Data de Nascimento
-              <span className="text-red-700">*</span>
+              Data de Nascimento <span className="text-red-700">*</span>
             </label>
             <input
               type="date"
-              id="email"
+              id="birthDate"
               placeholder="Digite sua data de nascimento"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
-              {...register("email")}
+              {...register("birthDate")}
             />
           </div>
         </div>
       </div>
 
-      {/* final */}
       <div className="w-full mt-5 pt-2 border-b border-neutral-200 dark:border-neutral-700 mb-5"></div>
       <div className="flex justify-end">
         <div className="space-x-5 space-y-5">

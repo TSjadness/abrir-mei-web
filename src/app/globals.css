@@ -72,11 +72,11 @@ body {
     width: auto;
   }
 
-  .custom-accordion{
+  .custom-accordion {
     width: auto;
   }
 
-  .custom-reverse{
+  .custom-reverse {
     display: flex;
     flex-direction: column-reverse;
     justify-content: center;
@@ -86,7 +86,7 @@ body {
     width: auto;
   }
 
-  .custom-image{
+  .custom-image {
     padding-left: 0%;
     padding-right: 0%;
   }
@@ -98,15 +98,35 @@ body {
     align-items: center;
   }
 
-  .custom-grid{
+  .custom-grid {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
 
-}
+  .custom-step {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
+  .custom-stepButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+  }
+  .custom-textStep {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+  }
+}
 
 .accordion-enter {
   max-height: 0;

@@ -8,16 +8,31 @@ import FormStep4 from "./FormStep4";
 
 
 const Formulario: React.FC = () => {
+  // const [step, setStep] = useState<number>(1);
+  // const [formData, setFormData] = useState<FormDataMei>({});
+
+  // const nextStep = (data: any) => {
+  //   setFormData((prev) => ({ ...prev, [`step${step}`]: data }));
+  //   setStep((prev) => prev + 1);
+  // };
+
+  // const previousStep = () => {
+  //   setStep((prev) => prev - 1);
+  // };
+
+  // const sendData = (data: any) => {
+  //   console.log(data + "enviado");
+  // };
   const [step, setStep] = useState<number>(1);
-  const [formData, setFormData] = useState<FormDataMei>({});
+  const [formData, setFormData] = useState<any>({});
 
   const nextStep = (data: any) => {
-    setFormData((prev) => ({ ...prev, [`step${step}`]: data }));
-    setStep((prev) => prev + 1);
+    setFormData((prev : any) => ({ ...prev, [`step${step}`]: data }));
+    setStep((prev) => prev + 1); 
   };
 
   const previousStep = () => {
-    setStep((prev) => prev - 1);
+    setStep((prev) => prev - 1); 
   };
 
   const sendData = (data: any) => {
