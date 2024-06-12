@@ -41,15 +41,7 @@ function FormularioMei() {
   };
 
   return (
-    // <div className=" flex justify-center items-center">
-    //   {etapaAtual === 1 && <EtapaDadosUsuario register={register} />}
-    //   {etapaAtual === 2 && <EtapaDadosBancarios register={register} />}
-    //   {etapaAtual === 3 && <StepAddress register={register} />}
-    //   <button onClick={proximoEtapa}>Próxima Etapa</button>
-    //   {etapaAtual > 1 && <button onClick={voltarEtapa}>Voltar</button>}
-    //   {etapaAtual === 3 && <button type="submit">Enviar</button>}
-    // </div>
-    <div className="flex justify-center items-center px-4 max-w-3xl mx-auto pb-24 pt-14 sm:py-24 lg:pb-32">
+  <div className="flex justify-center items-center px-4 max-w-3xl mx-auto pb-24 pt-14 sm:py-24 lg:pb-32">
       <form onSubmit={handleSubmit(submitForm)}>
         <div className="mb-9 flex items-center justify-center">
           <h1 className="text-3xl font-bold">ABERTURA DE MEI</h1>

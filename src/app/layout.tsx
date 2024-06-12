@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Providers from "@/utils/provider";
+import Providers from "@/provider/provider";
 
 import React, { ReactNode } from "react";
 
@@ -32,7 +32,7 @@ export default function RootLayout({
             {children}
             <ToastContainer />
             <Footer />
-            </Providers>
+          </Providers>
         </body>
       </html>
     </>
