@@ -5,9 +5,11 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { DataSchemaStep4, dataSchemaStep4 } from "./common";
+import { DataSchemaStep4, dataSchemaStep4 } from "../common";
+import { allMasks } from "@/utils/masks";
+import { FormDataMei, StepPropsAll } from "./types";
 
-interface Step4Props extends StepProps {
+interface Step4Props extends StepPropsAll {
   setStep: React.Dispatch<React.SetStateAction<number>>;
   formData: FormDataMei;
   setFormData: React.Dispatch<React.SetStateAction<FormDataMei>>;
@@ -40,48 +42,33 @@ const FormStep4: React.FC<Step4Props> = ({
 
   const onSubmit = async (dataStep4: any) => {
     try {
-      if (!termsAccepted) {
-        toast.error("Você deve aceitar os termos e condições.", {
+      setIsLoading(true);
+      const updatedFormData = {
+        ...formData,
+        step4: dataStep4,
+      };
+
+      const submitData = new FormData();
+      submitData.append("data", JSON.stringify(updatedFormData));
+
+      console.log(submitData, "envi1");
+      console.log(updatedFormData, "envi2");
+      console.log(dataStep4, "step4");
+
+      if (sendData) {
+        sendData(submitData);
+
+        toast.success("Formulário cadastrado com sucesso!", {
           autoClose: 2000,
         });
-        // return;
-        setIsLoading(true);
-
-        const updatedFormData = {
-          ...formData,
-          step4: dataStep4,
-        };
-
-        const submitData = new FormData();
-        submitData.append("data", JSON.stringify(updatedFormData));
-
-        console.log(submitData, "envi1");
-        console.log(updatedFormData, "envi2");
-        console.log(dataStep4, "step4");
-
-        if (sendData) {
-          sendData(submitData);
-
-          toast.success("Formulário cadastrado com sucesso!", {
-            autoClose: 2000,
-          });
-        }
-
-        setIsLoading(false);
       }
+
+      setIsLoading(false);
     } catch (error) {
       toast.error("Erro ao fazer cadastrado", {
         autoClose: 2000,
       });
     }
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
   };
 
   const handleCheckboxChange = (method: string) => {
@@ -155,7 +142,11 @@ const FormStep4: React.FC<Step4Props> = ({
 
         <div className="w-full">
           <div className=" w-full flex gap-2">
-            <input type="checkbox" name="" value="" className=" text-2xl" />
+            <input
+              type="checkbox"
+              name="terms_accepted"
+              className=" text-2xl"
+            />
             <label htmlFor="">
               Li e concordo com os{" "}
               <a href="" className="cursor-pointer underline text-blue-700">
@@ -166,11 +157,13 @@ const FormStep4: React.FC<Step4Props> = ({
         </div>
 
         <div className="mb-4 flex flex-col justify-between gap-3 items-center">
-          <label className=" w-full font-bold text-lg">Escolha a forma de pagamento</label>
+          <label className=" w-full font-bold text-lg">
+            Escolha a forma de pagamento
+          </label>
           <div className="w-full flex gap-2">
             <input
               type="checkbox"
-              name="paymentMethod"
+              name="payment_method"
               value="cartao"
               checked={paymentMethod === "cartao"}
               onChange={() => handleCheckboxChange("cartao")}
@@ -182,7 +175,7 @@ const FormStep4: React.FC<Step4Props> = ({
           <div className="w-full flex gap-2">
             <input
               type="checkbox"
-              name="paymentMethod"
+              name="payment_method"
               value="pix"
               checked={paymentMethod === "pix"}
               onChange={() => handleCheckboxChange("pix")}
@@ -203,10 +196,9 @@ const FormStep4: React.FC<Step4Props> = ({
                 type="text"
                 id="numeroCartao"
                 placeholder="0000.0000.0000.0000"
-                // {...register("numeroCartao", { required: true })}
+                {...register("cartao.numeroCartao")}
                 className="w-full p-2 border"
               />
-              {/* {errors.numeroCartao && <span>Campo obrigatório</span>} */}
             </div>
             <div>
               <label htmlFor="nomeCartao" className="font-bold">
@@ -216,10 +208,9 @@ const FormStep4: React.FC<Step4Props> = ({
                 type="text"
                 id="nomeCartao"
                 placeholder="Digite o nome aqui"
-                // {...register("nomeCartao", { required: true })}
+                {...register("cartao.nomeCartao")}
                 className="w-full p-2 border"
               />
-              {/* {errors.nomeCartao && <span>Campo obrigatório</span>} */}
             </div>
             <div>
               <label htmlFor="cpf" className="font-bold">
@@ -229,25 +220,29 @@ const FormStep4: React.FC<Step4Props> = ({
                 type="text"
                 id="cpf"
                 placeholder="000.000.000-00"
-                // {...register("cpf", { required: true })}
+                {...register("cartao.cpf")}
                 className="w-full p-2 border"
               />
             </div>
-            <div>
+            {/* <div>
               <label htmlFor="parcelas" className="font-bold">
                 Quantidade de Parcelas <span className="text-red-700">*</span>
               </label>
-              <select id="parcelas" className="w-full p-2 border">
-                <option value="1">1x R$ 193,00</option>
-                <option value="2">2x R$ 100,85 </option>
-                <option value="3">3x R$ 68,22</option>
-                <option value="4">4x R$ 51,91 </option>
-                <option value="5">5x R$ 42,13</option>
-                <option value="6">5x R$ 35,62</option>
-                <option value="7">5x R$ 30,97</option>
-                <option value="8">5x R$ 27,48</option>
+              <select
+                id="parcelas"
+                {...register("cartao.parcelas")}
+                className="w-full p-2 border"
+              >
+                <option value="1x R$ 193,00">1x R$ 193,00</option>
+                <option value="2x R$ 100,85">2x R$ 100,85 </option>
+                <option value="3x R$ 68,22">3x R$ 68,22</option>
+                <option value="4x R$ 51,91">4x R$ 51,91 </option>
+                <option value="5x R$ 42,13">5x R$ 42,13</option>
+                <option value="6x R$ 35,62">6x R$ 35,62</option>
+                <option value="7x R$ 30,9">7x R$ 30,97</option>
+                <option value="8x R$ 27,48">8x R$ 27,48</option>
               </select>
-            </div>
+            </div> */}
             <div>
               <label htmlFor="validade" className="font-bold">
                 Validade <span className="text-red-700">*</span>
@@ -256,7 +251,7 @@ const FormStep4: React.FC<Step4Props> = ({
                 type="text"
                 id="validade"
                 placeholder="MM/AA"
-                // {...register("validade", { required: true })}
+                {...register("cartao.validade")}
                 className="w-full p-2 border"
               />
             </div>
@@ -268,10 +263,9 @@ const FormStep4: React.FC<Step4Props> = ({
                 type="text"
                 id="cvv"
                 placeholder="000"
-                // {...register("cvv", { required: true })}
+                {...register("cartao.cvv")}
                 className="w-full p-2 border"
               />
-              {/* {errors.cvv && <span>Campo obrigatório</span>} */}
             </div>
           </div>
         )}
@@ -287,10 +281,9 @@ const FormStep4: React.FC<Step4Props> = ({
                 type="text"
                 id="cpfPagador"
                 placeholder="Digite o CPF do pagador"
-                // {...register("cpfPagador", { required: true })}
+                {...register("pix.cpfPagador")}
                 className="w-full p-2 border"
               />
-              {/* {errors.cpfPagador && <span>Campo obrigatório</span>} */}
             </div>
           </div>
         )}

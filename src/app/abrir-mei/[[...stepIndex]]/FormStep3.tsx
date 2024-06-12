@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { DataSchemaStep3, dataSchemaStep3 } from "./common";
+import { DataSchemaStep3, dataSchemaStep3 } from "../common";
+import { allMasks } from "@/utils/masks";
+import axios from "axios";
+import { StepPropsAll } from "./types";
 
-interface Step3Props extends StepProps {
+interface Step3Props extends StepPropsAll {
   data: any;
 }
 
@@ -16,26 +19,20 @@ const FormStep3: React.FC<Step3Props> = ({ nextStep, previousStep, data }) => {
     setValue,
     formState: { errors, isSubmitting },
   } = useForm<DataSchemaStep3>({ resolver: zodResolver(dataSchemaStep3) });
+  const [cepData, setCepData] = useState({});
 
-  const [cep, setCep] = useState("");
-
-  useEffect(() => {
-    if (cep.length === 8) {
-      fetch(`https://viacep.com.br/ws/${cep}/json/`)
-        .then((response) => response.json())
-        .then((data) => {
-          setValue("endereco", data.logradouro);
-          setValue("bairro", data.bairro);
-          setValue("cidade", data.localidade);
-          setValue("estado", data.uf);
-        })
-        .catch((error) => console.error("Error : ", error));
+  const fetchCEPData = async (cep: any) => {
+    try {
+      const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+      const data = response.data;
+      setCepData(data);
+      setValue("address", data.logradouro || "");
+      setValue("neighborhood", data.bairro || "");
+      setValue("city", data.localidade || "");
+      setValue("state", data.uf || "");
+    } catch (error) {
+      console.error("Erro ao buscar dados do CEP:", error);
     }
-  }, [cep, setValue]);
-
-  const handleCepChange = (event: any) => {
-    const maskedCep = maskCEP(event);
-    setCep(maskedCep);
   };
 
   const onSubmit = (data: any) => {
@@ -59,10 +56,9 @@ const FormStep3: React.FC<Step3Props> = ({ nextStep, previousStep, data }) => {
             <input
               type="text"
               id="cep"
+              onChange={(e) => fetchCEPData(e.target.value)}
               placeholder="00000-000"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
-              value={cep}
-              onChange={handleCepChange}
             />
           </div>
 
@@ -70,13 +66,13 @@ const FormStep3: React.FC<Step3Props> = ({ nextStep, previousStep, data }) => {
             <label htmlFor="" className="font-bold">
               Cidade<span className="text-red-700">*</span>
             </label>
+
             <input
               type="text"
-              id="name3"
+              id="city"
               placeholder="Digite a sua cidade"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
-              {...register("cidade")}
-              // {...register("name3")}
+              {...register("city")}
             />
           </div>
 
@@ -86,11 +82,10 @@ const FormStep3: React.FC<Step3Props> = ({ nextStep, previousStep, data }) => {
             </label>
             <input
               type="text"
-              id="name3"
+              id="neighborhood"
               placeholder="Digite seu bairro"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
-              {...register("bairro")}
-              // {...register("name3")}
+              {...register("neighborhood")}
             />
           </div>
         </div>
@@ -102,11 +97,10 @@ const FormStep3: React.FC<Step3Props> = ({ nextStep, previousStep, data }) => {
             </label>
             <input
               type="text"
-              id="name3"
+              id="address"
               placeholder="Digite seu endereço"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
-              {...register("endereco")}
-              // {...register("name3")}
+              {...register("address")}
             />
           </div>
 
@@ -116,24 +110,23 @@ const FormStep3: React.FC<Step3Props> = ({ nextStep, previousStep, data }) => {
             </label>
             <input
               type="text"
-              id="name3"
+              id="number"
+              {...register("number")}
               placeholder="Digite o número"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
-              // {...register("name3")}
             />
           </div>
 
-          <div className=" w-full">
+          <div className="w-full">
             <label htmlFor="" className="font-bold">
               Estado<span className="text-red-700">*</span>
             </label>
             <input
               type="text"
-              id="name3"
+              id="state"
               placeholder="Digite o estado"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
-              {...register("estado")}
-              // {...register("name3")}
+              {...register("state")}
             />
           </div>
         </div>
@@ -145,10 +138,10 @@ const FormStep3: React.FC<Step3Props> = ({ nextStep, previousStep, data }) => {
             </label>
             <input
               type="text"
-              id="name3"
+              id="complement"
+              {...register("complement")}
               placeholder="Digite o complemento"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
-              // {...register("name3")}
             />
           </div>
         </div>
@@ -160,9 +153,9 @@ const FormStep3: React.FC<Step3Props> = ({ nextStep, previousStep, data }) => {
               <span className="text-red-700">*</span>
             </label>
             <select
-              id="email3"
+              id="same_address"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
-              // {...register("email3")}
+              {...register("same_address")}
             >
               <option value="sim">Sim</option>
               <option value="nao">Não</option>
@@ -178,10 +171,10 @@ const FormStep3: React.FC<Step3Props> = ({ nextStep, previousStep, data }) => {
             </label>
             <input
               type="password"
-              id="name3"
+              id="gov_password"
+              {...register("gov_password")}
               placeholder="Digite a senha"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
-              // {...register("name3")}
             />
           </div>
         </div>
@@ -195,10 +188,10 @@ const FormStep3: React.FC<Step3Props> = ({ nextStep, previousStep, data }) => {
             </label>
             <input
               type="password"
-              id="name3"
+              id="confirm_password"
+              {...register("confirm_password")}
               placeholder="Digite a senha"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
-              // {...register("name3")}
             />
           </div>
         </div>

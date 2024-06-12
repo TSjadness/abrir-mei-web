@@ -1,9 +1,10 @@
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { DataSchemaStep2, dataSchemaStep2 } from "./common";
+import { DataSchemaStep2, dataSchemaStep2 } from "../common";
+import { StepPropsAll } from "./types";
 
-interface Step2Props extends StepProps {
+interface Step2Props extends StepPropsAll {
   data: any;
 }
 
@@ -35,10 +36,16 @@ const FormStep2: React.FC<Step2Props> = ({ nextStep, previousStep, data }) => {
             </label>
             <input
               type="text"
-              id="name2"
+              id=" capital_value"
               placeholder="Digite o valor do capital social"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
+              {...register("capital_value")}
             />
+            {errors. capital_value && (
+              <span className="text-red-600">
+                {errors. capital_value.message}
+              </span>
+            )}
           </div>
 
           <div className=" w-full">
@@ -48,13 +55,23 @@ const FormStep2: React.FC<Step2Props> = ({ nextStep, previousStep, data }) => {
             </label>
 
             <select
-              id="email2"
+              id=" main_occupation"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
+              {...register("main_occupation")}
             >
-              <option value="comercio">Comércio</option>
-              <option value="servicos">Serviços</option>
-              <option value="industria">Indústria</option>
+              <option value="">Selecionar</option>
+              <option value="Abatedor(a) De Aves Com Comercialização do Produto Independente">
+                Abatedor(a) De Aves Com Comercialização do Produto Independente
+              </option>
+              <option value="Acabador(a) De Calçados">
+                Acabador(a) De Calçados
+              </option>
             </select>
+            {errors. main_occupation && (
+              <span className="text-red-600">
+                {errors. main_occupation.message}
+              </span>
+            )}
           </div>
         </div>
 
@@ -65,13 +82,23 @@ const FormStep2: React.FC<Step2Props> = ({ nextStep, previousStep, data }) => {
               <span className="text-red-700">*</span>
             </label>
             <select
-              id="email"
+              id="secondary_occupation"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
+              {...register("secondary_occupation")}
             >
-              <option value="comercio">Comércio</option>
-              <option value="servicos">Serviços</option>
-              <option value="industria">Indústria</option>
+              <option value="">Selecionar</option>
+              <option value="Abatedor(a) De Aves Com Comercialização do Produto Independente">
+                Abatedor(a) De Aves Com Comercialização do Produto Independente
+              </option>
+              <option value="Acabador(a) De Calçados">
+                Acabador(a) De Calçados
+              </option>
             </select>
+            {errors.secondary_occupation && (
+              <span className="text-red-600">
+                {errors.secondary_occupation.message}
+              </span>
+            )}
           </div>
 
           <div className=" w-full">
@@ -79,11 +106,30 @@ const FormStep2: React.FC<Step2Props> = ({ nextStep, previousStep, data }) => {
               Forma de atuação <span className="text-red-700">*</span>
             </label>
 
-            <select className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2">
-              <option value="comercio">Comércio</option>
-              <option value="servicos">Serviços</option>
-              <option value="industria">Indústria</option>
+            <select
+              id="mode_operation"
+              {...register("mode_operation")}
+              className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
+            >
+              <option value="">Selecionar</option>
+              <option value="Máquinas Automáticas">Máquinas Automáticas</option>
+              <option value="Estabelecimento Fixo">Estabelecimento Fixo</option>
+              <option value="Internet">Internet</option>
+              <option value="Em Local Fixo Fora da Loja">
+                Em Local Fixo Fora da Loja
+              </option>
+              <option value="Correio">Correio</option>
+              <option value="Porta a Porta">Porta a Porta</option>
+              <option value="Postos Móveis ou por Ambulante">
+                Postos Móveis ou por Ambulante
+              </option>
+              <option value="Televenda">Televenda</option>
             </select>
+            {errors.mode_operation && (
+              <span className="text-red-600">
+                {errors.mode_operation.message}
+              </span>
+            )}
           </div>
         </div>
       </div>

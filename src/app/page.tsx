@@ -5,17 +5,11 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div>
-      {/* <header>
-        <NavBar />
-      </header> */}
-
-      <main className="min-h-screen">
+      <main className="nc-PageHome relative overflow-hidden">
+        <div className="">
         <AppRoutes />
+        </div>
       </main>
-
-      {/* <footer>
-        <Footer />
-      </footer> */}
     </div>
   );
 }

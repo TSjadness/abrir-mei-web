@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
-import { dataSchemaStep1, DataSchemaStep1 } from "./common";
+import React, { useEffect, useState } from "react";
+import { dataSchemaStep1, DataSchemaStep1 } from "../common";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { allMasks } from "@/utils/masks";
+import { StepPropsAll } from "./types";
 
-interface Step1Props extends StepProps {
+interface Step1Props extends StepPropsAll {
   data: any;
 }
 
@@ -27,14 +28,13 @@ const FormStep1: React.FC<Step1Props> = ({ nextStep, data }) => {
     setValue("rg", allMasks.maskRG(rgValue));
     setValue("phone", allMasks.maskPhone(phoneValue));
   }, [cpfValue, rgValue, phoneValue, setValue]);
-
   const onSubmit = (data: any) => {
     nextStep(data);
     console.log(data, "step1");
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="">
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-5">
         <div className="text-3xl font-bold mb-10 custom-step">
           <h2>Informações Pessoais</h2>
@@ -50,8 +50,8 @@ const FormStep1: React.FC<Step1Props> = ({ nextStep, data }) => {
               type="text"
               id="name"
               placeholder="Digite seu nome completo"
-              className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
-              {...(register("name") ?? "")}
+              className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2 "
+              {...register("name")}
             />
             {errors.name && (
               <span className="text-red-600">{errors.name.message}</span>
@@ -121,14 +121,79 @@ const FormStep1: React.FC<Step1Props> = ({ nextStep, data }) => {
               Órgão Emissor do RG <span className="text-red-700">*</span>
             </label>
             <select
-              id="rgIssuer"
-              {...register("rgIssuer")}
+              id="rg_issuer"
+              {...register("rg_issuer")}
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
             >
               <option value="">Selecione</option>
               <option value="SSP">SSP</option>
+              <option value="Cartório Civil">Cartório Civil</option>
+              <option value="Polícia Federal">Polícia Federal</option>
               <option value="DETRAN">DETRAN</option>
-              <option value="Outros">Outros</option>
+              <option value="ABNC">ABNC</option>
+              <option value="CGPI/DUREX/DPF">CGPI/DUREX/DPF</option>
+              <option value="CGPI">CGPI</option>
+              <option value="CGPMAF">CGPMAF</option>
+              <option value="CNIG">CNIG</option>
+              <option value="CNT">CNT</option>
+              <option value="COREN">COREN</option>
+              <option value="CORECON">CORECON</option>
+              <option value="CRA">CRA</option>
+              <option value="CRAS">CRAS</option>
+              <option value="CRB">CRB</option>
+              <option value="CRC">CRC</option>
+              <option value="CRE">CRE</option>
+              <option value="CREA">CREA</option>
+              <option value="CRECI">CRECI</option>
+              <option value="CREFIT">CREFIT</option>
+              <option value="CRESS">CRESS</option>
+              <option value="CRF">CRF</option>
+              <option value="CRM">CRM</option>
+              <option value="CRN">CRN</option>
+              <option value="CRO">CRO</option>
+              <option value="CRP">CRP</option>
+              <option value="CRPRE">CRPRE</option>
+              <option value="CRQ">CRQ</option>
+              <option value="CRRC">CRRC</option>
+              <option value="CRMV">CRMV</option>
+              <option value="CSC">CSC</option>
+              <option value="DIC">DIC</option>
+              <option value="DIREX">DIREX</option>
+              <option value="DPMAF">DPMAF</option>
+              <option value="DPT">DPT</option>
+              <option value="DST">DST</option>
+              <option value="FGTS">FGTS</option>
+              <option value="FIPE">FIPE</option>
+              <option value="FLS">FLS</option>
+              <option value="GOVGO">GOVGO</option>
+              <option value="I CLA">I CLA</option>
+              <option value="IFP">IFP</option>
+              <option value="IGP">IGP</option>
+              <option value="IICCECF/RO">IICCECF/RO</option>
+              <option value="IIMG">IIMG</option>
+              <option value="IML">IML</option>
+              <option value="IPC">IPC</option>
+              <option value="IPF">IPF</option>
+              <option value="MAE">MAE</option>
+              <option value="MEX">MEX</option>
+              <option value="MMA">MMA</option>
+              <option value="MTE">MTE</option>
+              <option value="OAB">OAB</option>
+              <option value="OMB">OMB</option>
+              <option value="PCMG">PCMG</option>
+              <option value="PMMG">PMMG</option>
+              <option value="POF ou DPF">POF ou DPF</option>
+              <option value="POM">POM</option>
+              <option value="SDS">SDS</option>
+              <option value="SNJ">SNJ</option>
+              <option value="SECC">SECC</option>
+              <option value="SEJUSP">SEJUSP</option>
+              <option value="SES ou EST">SES ou EST</option>
+              <option value="SESP">SESP</option>
+              <option value="SJS">SJS</option>
+              <option value="SJTC">SJTC</option>
+              <option value="SJTS">SJTS</option>
+              <option value="SPTC">SPTC</option>
             </select>
           </div>
 
@@ -137,8 +202,8 @@ const FormStep1: React.FC<Step1Props> = ({ nextStep, data }) => {
               Estado de Emissão <span className="text-red-700">*</span>
             </label>
             <select
-              id="rgState"
-              {...register("rgState")}
+              id="rg_state"
+              {...register("rg_state")}
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
             >
               <option value="">Selecione</option>
@@ -180,10 +245,10 @@ const FormStep1: React.FC<Step1Props> = ({ nextStep, data }) => {
             </label>
             <input
               type="text"
-              id="motherName"
+              id="mother_name"
               placeholder="Digite o nome completo da sua mãe"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
-              {...register("motherName")}
+              {...register("mother_name")}
             />
           </div>
 
@@ -193,10 +258,10 @@ const FormStep1: React.FC<Step1Props> = ({ nextStep, data }) => {
             </label>
             <input
               type="date"
-              id="birthDate"
+              id="birth_date"
               placeholder="Digite sua data de nascimento"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
-              {...register("birthDate")}
+              {...register("birth_date")}
             />
           </div>
         </div>

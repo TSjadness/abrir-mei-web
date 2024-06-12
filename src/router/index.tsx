@@ -1,6 +1,5 @@
-
-"use client"
-import Formulario from "@/app/abrir-mei/formulario/page";
+"use client";
+import Formulario from "@/app/abrir-mei/[[...stepIndex]]/page";
 import { DashboardPage } from "@/templates";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -9,7 +8,7 @@ export function AppRoutes() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<DashboardPage />} />
-        <Route path="/abrir-mei/formulario/" element={<Formulario />} />
+        <Route path="/abrir-mei" element={<Formulario />} />
       </Routes>
     </BrowserRouter>
   );
