@@ -2,15 +2,20 @@ import React, { useState } from "react";
 
 interface Props {
   register: any;
+  setTermsAccepted: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const StepPayments = ({ register }: Props) => {
-    const [termsAccepted, setTermsAccepted] = useState(false);
-    const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
+const StepPayments = ({ register, setTermsAccepted }: Props) => {
+  const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
 
-      const handleCheckboxChange = (method: string) => {
-        setPaymentMethod(method);
-      };
+  const handleCheckboxChange = (method: string) => {
+    setPaymentMethod(method);
+  };
+  const handleTermsCheckboxChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setTermsAccepted(e.target.checked);
+  };
 
   return (
     <div>
@@ -85,6 +90,7 @@ const StepPayments = ({ register }: Props) => {
                 type="checkbox"
                 name="terms_accepted"
                 className=" text-2xl"
+                onChange={handleTermsCheckboxChange}
               />
               <label htmlFor="">
                 Li e concordo com os{" "}

@@ -2,6 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { DataSchemaStep2, dataSchemaStep2 } from "./common";
+import InputMask from "react-input-mask";
 
 interface Props {
   register: any;
