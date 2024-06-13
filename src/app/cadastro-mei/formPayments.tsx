@@ -170,12 +170,12 @@ const StepPayments = ({ register, setTermsAccepted }: Props) => {
                 className="w-full p-2 border"
               />
             </div>
-            {/* <div>
-              <label htmlFor=" installments" className="font-bold">
+            <div>
+              <label htmlFor="installments" className="font-bold">
                 Quantidade de Parcelas <span className="text-red-700">*</span>
               </label>
               <select
-                id=" installments"
+                id="installments"
                 {...register("card. installments")}
                 className="w-full p-2 border"
               >
@@ -188,7 +188,7 @@ const StepPayments = ({ register, setTermsAccepted }: Props) => {
                 <option value="7x R$ 30,9">7x R$ 30,97</option>
                 <option value="8x R$ 27,48">8x R$ 27,48</option>
               </select>
-            </div> */}
+            </div>
             <div>
               <label htmlFor="expiration_date" className="font-bold">
                 Validade <span className="text-red-700">*</span>

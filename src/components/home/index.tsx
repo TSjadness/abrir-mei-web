@@ -142,7 +142,7 @@ export function HomePage() {
               </p>
               <div className="flex items-center ">
                 <Link to="/cadastro-mei">
-                  <button className="inline-flex items-center px-10 py-2 text-sm font-medium text-center justify-center text-white bg-[#3e8e30] rounded-lg hover:bg-[#397c2c] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                  <button className="inline-flex items-center px-10 py-2 text-sm  text-center justify-center text-white font-bold bg-[#00BF00] rounded-lg hover:scale-110 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
                     ABRIR MEI
                   </button>
                 </Link>
