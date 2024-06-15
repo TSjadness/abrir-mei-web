@@ -18,14 +18,18 @@ const StepData = ({ register }: Props) => {
   return (
     <div>
       <div className="mb-5">
-        <div className="text-3xl font-bold mb-10 custom-step">
+        <div className="text-xl font-semibold custom-step text-blue-500">
           <h2>Dados CNPJ</h2>
         </div>
+        <div
+          className="w-full pt-2 mb-5 border-b-2"
+          style={{ borderColor: "rgba(2, 108, 135, var(--tw-bg-opacity))" }}
+        ></div>
       </div>
       <div className="space-y-8 pt-2 ">
         <div className="mb-7 flex flex-row justify-between gap-5 items-center custom-step">
           <div className=" w-full">
-            <label htmlFor="" className="font-bold">
+            <label htmlFor="" className=" text-gray-700">
               Valor do Capital Social <span className="text-red-700">*</span>
             </label>
             <input
@@ -43,7 +47,7 @@ const StepData = ({ register }: Props) => {
           </div>
 
           <div className=" w-full">
-            <label htmlFor="" className="font-bold">
+            <label htmlFor="" className=" text-gray-700">
               Ocupação Principal da Empresa{" "}
               <span className="text-red-700">*</span>
             </label>
@@ -71,7 +75,7 @@ const StepData = ({ register }: Props) => {
 
         <div className="mb-7 flex flex-row justify-between gap-5 items-center custom-step">
           <div className=" w-full">
-            <label htmlFor="" className="font-bold">
+            <label htmlFor="" className=" text-gray-700">
               Escolha a Ocupação Secundária{" "}
               <span className="text-red-700">*</span>
             </label>
@@ -96,7 +100,7 @@ const StepData = ({ register }: Props) => {
           </div>
 
           <div className=" w-full">
-            <label htmlFor="" className="font-bold">
+            <label htmlFor="" className=" text-gray-700">
               Forma de atuação <span className="text-red-700">*</span>
             </label>
 

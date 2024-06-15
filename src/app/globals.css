@@ -16,6 +16,7 @@
   }
 }
 
+
 body {
   background: white;
   margin: 0;
@@ -31,6 +32,9 @@ body {
     text-wrap: balance;
   }
 }
+
+
+
 
 @media (max-width: 768px) {
   .custom-margin {

@@ -20,21 +20,25 @@ const StepDataPersonal = ({ register }: Props) => {
   return (
     <div>
       <div className="mb-5">
-        <div className="text-3xl font-bold mb-10 custom-step">
+        <div className="text-xl font-semibold custom-step text-blue-500">
           <h2>Informações Pessoais</h2>
         </div>
+        <div
+          className="w-full pt-2 mb-5 border-b-2"
+          style={{ borderColor: "rgba(2, 108, 135, var(--tw-bg-opacity))" }}
+        ></div>
       </div>
       <div className="space-y-8 pt-2">
         <div className="mb-7 flex flex-row justify-between gap-5 items-center custom-step">
           <div className=" w-full">
-            <label htmlFor="" className="font-bold">
+            <label htmlFor="" className=" text-gray-700">
               Nome Completo <span className="text-red-700">*</span>
             </label>
             <input
               type="text"
               id="name"
               placeholder="Digite seu nome completo"
-              className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2 "
+              className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2 outline-blue-500/50 "
               {...register("name")}
             />
             {errors.name && (
@@ -43,7 +47,7 @@ const StepDataPersonal = ({ register }: Props) => {
           </div>
 
           <div className=" w-full">
-            <label htmlFor="" className="font-bold">
+            <label htmlFor="" className=" text-gray-700">
               Endereço de e-mail <span className="text-red-700">*</span>
             </label>
             <input
@@ -60,7 +64,7 @@ const StepDataPersonal = ({ register }: Props) => {
 
         <div className="mb-7 flex flex-row justify-between gap-5 items-center custom-step">
           <div className=" w-full">
-            <label htmlFor="" className="font-bold">
+            <label htmlFor="" className=" text-gray-700">
               CPF <span className="text-red-700">*</span>
             </label>
             <InputMask
@@ -73,7 +77,7 @@ const StepDataPersonal = ({ register }: Props) => {
             />
           </div>
           <div className=" w-full">
-            <label htmlFor="" className="font-bold">
+            <label htmlFor="" className=" text-gray-700">
               Número de Telefone (WhatsApp){" "}
               <span className="text-red-700">*</span>
             </label>
@@ -91,11 +95,11 @@ const StepDataPersonal = ({ register }: Props) => {
 
         <div className="mb-7 flex flex-row justify-between gap-5 items-center custom-step">
           <div className=" w-full">
-            <label htmlFor="" className="font-bold">
+            <label htmlFor="" className=" text-gray-700">
               RG / Identidade <span className="text-red-700">*</span>
             </label>
             <InputMask
-              mask="99.999.999-9" 
+              mask="99.999.999-9"
               maskChar=""
               type="text"
               id="rg"
@@ -106,7 +110,7 @@ const StepDataPersonal = ({ register }: Props) => {
           </div>
 
           <div className=" w-full">
-            <label htmlFor="" className="font-bold">
+            <label htmlFor="" className=" text-gray-700">
               Órgão Emissor do RG <span className="text-red-700">*</span>
             </label>
             <select
@@ -187,7 +191,7 @@ const StepDataPersonal = ({ register }: Props) => {
           </div>
 
           <div className=" w-full">
-            <label htmlFor="" className="font-bold">
+            <label htmlFor="" className=" text-gray-700">
               Estado de Emissão <span className="text-red-700">*</span>
             </label>
             <select
@@ -229,7 +233,7 @@ const StepDataPersonal = ({ register }: Props) => {
 
         <div className="mb-7 flex flex-row justify-between gap-5 items-center custom-step">
           <div className=" w-full">
-            <label htmlFor="" className="font-bold">
+            <label htmlFor="" className=" text-gray-700">
               Nome completo da Mãe <span className="text-red-700">*</span>
             </label>
             <input
@@ -242,7 +246,7 @@ const StepDataPersonal = ({ register }: Props) => {
           </div>
 
           <div className=" w-full">
-            <label htmlFor="" className="font-bold">
+            <label htmlFor="" className=" text-gray-700">
               Data de Nascimento <span className="text-red-700">*</span>
             </label>
             <input

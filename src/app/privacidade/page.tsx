@@ -7,7 +7,7 @@ const pagePrivacidade = () => {
         {/* politica */}
         <div className="flex flex-col items-start  justify-center">
           <h1 className="font-semibold text-4xl">Politicas de privacidade</h1>
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             O Abrir MEI Online se preocupa com os registros eletrônicos e os
             dados pessoais deixados por você (“Titular”) na utilização do nosso
             website (abrirmeionline.org) e serviços nele disponíveis
@@ -15,13 +15,13 @@ const pagePrivacidade = () => {
             pessoais que possam identificá-lo.
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             Esta Política de Privacidade (“Política”) regula, de forma simples,
             transparente e objetiva, quais dados pessoais poderão ser coletados,
             assim como quando e de qual forma eles poderão ser utilizados.
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             A presente Política é voltada aos clientes do Abrir MEI Online e ao
             público em geral, no acesso e uso do nosso Site e serviços nele
             disponíveis e inclui, as formas que tratamos os seus dados pessoais.
@@ -37,19 +37,19 @@ const pagePrivacidade = () => {
         {/* definições importantes */}
         <div className="flex flex-col items-start justify-center mt-8">
           <h1 className="font-semibold text-4xl">Definições Importantes</h1>
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             Nesta Política de Privacidade adotamos as seguintes acepções para os
             termos:
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">Dado pessoal: </span>
             Esta Política de Privacidade (“Política”) regula, de forma simples,
             transparente e objetiva, quais dados pessoais poderão ser coletados,
             assim como quando e de qual forma eles poderão ser utilizados.
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">Dado pessoal sensível: </span>
             Categoria especial de dados pessoais referentes à origem racial ou
             étnica, convicção religiosa, opinião política, filiação a sindicato
@@ -58,13 +58,13 @@ const pagePrivacidade = () => {
             relativos à pessoa natural.
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">Titular: </span>
             Pessoa natural a quem se referem os dados pessoais. Para os fins
             desta Política de Privacidade você é o Titular.
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">Tratamento: </span>
             Toda operação realizada com dados pessoais, como as que se referem
             a: coleta, produção, recepção, classificação, utilização, acesso,
@@ -73,7 +73,7 @@ const pagePrivacidade = () => {
             modificação, comunicação, transferência, difusão ou extração.
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">Anonimização: </span>
             Processo por meio do qual o dado perde a possibilidade de
             associação, direta ou indireta, a um indivíduo, considerados os
@@ -83,7 +83,7 @@ const pagePrivacidade = () => {
         {/* coleta de dados */}
         <div className="flex flex-col items-start justify-center mt-8">
           <h1 className="font-semibold text-4xl">Coleta de dados</h1>
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             Coletamos informações sobre você quando usa nossos Serviços. Além
             disso, terceiros podem coletar informações a seu respeito quando
             você usa nossos serviços. As informações coletadas podem incluir ou
@@ -95,7 +95,7 @@ const pagePrivacidade = () => {
             Quando coletamos seus Dados Pessoais:
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">
               No preenchimento de formulários nos Serviços.
             </span>{" "}
@@ -107,7 +107,7 @@ const pagePrivacidade = () => {
             receber comunicações nossas.
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">Pelo seu contato conosco. </span>
             Quando você entra em contato com o Abrir MEI Online através da sua
             interação com os canais de atendimento, você pode estar por ato
@@ -122,7 +122,7 @@ const pagePrivacidade = () => {
             Dados que não desejamos coletar nos Serviços:
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">Dados de menores de idade. </span>
             Não coletamos intencionalmente dados pessoais de indivíduos menores
             de idade ou incapazes. Se você é pai ou responsável legal e acredita
@@ -133,7 +133,7 @@ const pagePrivacidade = () => {
             suporte@portalmeibrasil.com
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">Dados pessoais sensíveis. </span>
             Não coletamos intencionalmente dados pessoais sensíveis pelos nossos
             Serviços. Em princípio, as informações solicitadas em nossos
@@ -151,7 +151,7 @@ const pagePrivacidade = () => {
 
           <p className="font-bold mt-4">Dados coletados automaticamente</p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">Dados de navegação. </span>
             Coletamos automaticamente certos tipos de dados quando você usa
             nossos serviços, independentemente de você ter uma conta. Esses
@@ -167,25 +167,25 @@ const pagePrivacidade = () => {
         {/* Uso dos dados */}
         <div className="flex flex-col items-start justify-center mt-8">
           <h1 className="font-semibold text-4xl">Uso dos dados</h1>
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             Você concorda que o Abrir MEI Online poderá usar os dados pessoais
             fornecidos por você para (art. 7º, inc. I, LGPD):
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">Comunicação com você: </span> usamos
             seus dados quando nos comunicamos com você, por exemplo, quando
             enviamos e-mails a você. Também usamos os dados pessoais fornecidos
             por você para a oferta de produtos e serviços do Abrir MEI Online.
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">Operando nossos serviços: </span>
             usamos seus dados para fornecer nossos serviços, e, de outra forma,
             cumprir nossas obrigações contratuais com você.
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">Melhorando nossos serviços: </span>
             usamos seus dados para entender como nossos serviços estão sendo
             usados e como podemos melhorá-los. Em geral, analisamos dados
@@ -195,34 +195,34 @@ const pagePrivacidade = () => {
             algumas situações.
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">Personalizando sua experiência: </span>
             usamos seus dados para personalizar o serviço para você.
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">Marketing e publicidade: </span>
             usamos seus dados para mostrar anúncios em sites de terceiros.
             Também podemos usar seus dados para enviar anúncios de terceiros
             para você.
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             O Abrir MEI Online também poderá usar os dados pessoais fornecidos
             por você para (art. 7º, inc. II, V, VI e IX, LGPD):
           </p>
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">Exercício regular de direitos: </span>
             quando for razoavelmente necessário, usamos seus dados para exercer
             nossos direitos legais e prevenir o abuso de nosso serviço.
           </p>
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">Conformidade legal: </span>
             usamos seus dados onde somos legalmente obrigados a fazê-lo. Por
             exemplo, podemos precisar coletar seus dados para responder a uma
             intimação ou ordem judicial.
           </p>
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">Protegendo suas informações: </span>
             quando apropriado, podemos tornar anônimos, fazer backup e excluir
             certos dados.
@@ -231,13 +231,13 @@ const pagePrivacidade = () => {
         {/* Compartilhamento de dados */}
         <div className="flex flex-col items-start justify-center mt-8">
           <h1 className="font-semibold text-4xl">Compartilhamento de dados</h1>
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             Você concorda que o Abrir MEI Online poderá compartilhar e processar
             os dados pessoais fornecidos por você, em quaisquer países ou
             territórios, para as seguintes finalidades (art. 7º, inc. I, LGPD):
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">Fornecedores autorizados: </span>{" "}
             podemos compartilhar seus dados com fornecedores terceirizados que
             nos ajudam a operar nossos serviços, processar pedidos e cumprir
@@ -250,37 +250,37 @@ const pagePrivacidade = () => {
             e fornecedores de remessa.
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">Publicidade: </span>
             podemos compartilhar seus dados com empresas de publicidade para
             exibir anúncios relevantes para você.
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">Análise: </span>
             podemos compartilhar seus dados com provedores de análise que nos
             ajudam a entender como os clientes estão usando nossos serviços.
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             Nós usamos esforços razoáveis para examinar os fornecedores quanto
             às suas práticas de privacidade e segurança de dados. Exigimos que
             esses fornecedores concordem em proteger os dados que compartilhamo
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             O Abrir MEI Online também pode compartilhar e processar os dados
             pessoais fornecidos por você, em quaisquer países ou territórios,
             para as seguintes finalidades (art. 7º, inc. VI, LGPD):
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             <span className="font-bold">Certas situações jurídicas: </span>
             podemos compartilhar seus dados onde acreditamos que a divulgação
             seja necessária para cumprir uma obrigação legal ou em conexão com
             uma transação corporativa.
           </p>
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             Informações agregadas ou anônimas não serão consideradas dados
             pessoais, podemos divulgar publicamente informações não pessoais
             agregadas ou anônimas, como nosso número de visitantes e usuários
@@ -290,12 +290,12 @@ const pagePrivacidade = () => {
         {/* Seus Direitos */}
         <div className="flex flex-col items-start justify-center mt-8">
           <h1 className="font-semibold text-4xl">Seus Direitos</h1>
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             Você tem o direito de requerer a qualquer momento, com relação aos
             seus dados pessoais (art.18 da LGPD):
           </p>
 
-          <div className="mt-4 text-justify text-sm">
+          <div className="mt-4 text-justify text-base">
             <ul className="list-disc pl-5 space-y-2">
               <li>Confirmação da existência de tratamento</li>
               <li>Acesso aos dados</li>
@@ -317,7 +317,7 @@ const pagePrivacidade = () => {
             </ul>
           </div>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             Além das hipóteses legalmente previstas, podemos reter registros de
             informações coletadas automaticamente (para análises internas e fins
             de segurança).
@@ -326,7 +326,7 @@ const pagePrivacidade = () => {
         {/* Protegendo suas informações */}
         <div className="flex flex-col items-start justify-center mt-8">
           <h1 className="font-semibold text-4xl">Seus Direitos</h1>
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             O Abrir MEI Online emprega medidas administrativas, lógicas,
             gerenciais e físicas razoáveis para proteger seus dados pessoais
             contra perdas, roubos e acesso, uso e alterações não autorizadas.
@@ -334,7 +334,7 @@ const pagePrivacidade = () => {
             adequado aos riscos de processamento de seus dados pessoais.
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             Apesar desses esforços, nenhum sistema de informação pode ser 100%
             seguro, por isso não podemos garantir a segurança absoluta de suas
             informações. Os usuários também têm um papel a cumprir para manter
@@ -344,7 +344,7 @@ const pagePrivacidade = () => {
         {/* Serviços de terceiros */}
         <div className="flex flex-col items-start justify-center mt-8">
           <h1 className="font-semibold text-4xl">Serviços de terceiros</h1>
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             Podemos fornecer links para serviços online que não possuímos ou
             operamos. Esses serviços estão fora desta Política de Privacidade e
             não temos controle sobre os dados que eles coletam. Por exemplo, se
@@ -355,7 +355,7 @@ const pagePrivacidade = () => {
             tais serviços antes de usá-los.
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             A Política de Privacidade do Abrir MEI Online não se aplica a outros
             anunciantes ou sites. Assim, aconselhamos a consulta das respectivas
             Políticas de Privacidade desses servidores de anúncios de terceiros
@@ -363,7 +363,7 @@ const pagePrivacidade = () => {
             instruções sobre como cancelar certas opções.
           </p>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             Você pode optar por desativar os cookies por meio das opções
             individuais do seu navegador. Para saber informações mais detalhadas
             sobre o gerenciamento de cookies com navegadores específicos, elas
@@ -375,13 +375,13 @@ const pagePrivacidade = () => {
           <h1 className="font-semibold text-4xl">
             Mudanças na Política de Privacidade
           </h1>
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             O Abrir MEI Online se reserva o direito de modificar sua política de
             privacidade a qualquer momento e irá notificar você incluindo um
             aditivo à política de privacidade no nosso Site. Essas alterações se
             tornarão vigentes no dia de sua publicação.
           </p>
-          <p className="mt-4 text-justify text-sm">Revisado em <span className="font-bold">08/01/2024</span></p>
+          <p className="mt-4 text-justify text-base">Revisado em <span className="font-bold">08/01/2024</span></p>
         </div>
       </div>
     </div>

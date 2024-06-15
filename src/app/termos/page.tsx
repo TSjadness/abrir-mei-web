@@ -7,7 +7,7 @@ const pageTermos = () => {
         {/* termos */}
         <div className="flex flex-col items-start justify-center mt-8">
           <h1 className="font-semibold text-4xl">1. Termos</h1>
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             Ao acessar ao site Abrir MEI Online, concorda em cumprir estes
             termos de serviço, todas as leis e regulamentos aplicáveis ​​e
             concorda que é responsável pelo cumprimento de todas as leis locais
@@ -20,7 +20,7 @@ const pageTermos = () => {
         {/* uso de licença */}
         <div className="flex flex-col items-start justify-center mt-8">
           <h1 className="font-semibold text-4xl">2. Uso de Licença</h1>
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             É concedida permissão para baixar temporariamente uma cópia dos
             materiais (informações ou software) no site Abrir MEI Online ,
             apenas para visualização transitória pessoal e não comercial. Esta é
@@ -28,7 +28,7 @@ const pageTermos = () => {
             esta licença, você não pode:
           </p>
 
-          <div className="mt-4 text-justify text-sm">
+          <div className="mt-4 text-justify text-base">
             <ul className="list-decimal pl-5 space-y-2">
               <li>modificar ou copiar os materiais; </li>
               <li>
@@ -50,7 +50,7 @@ const pageTermos = () => {
             </ul>
           </div>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             Esta licença será automaticamente rescindida se você violar alguma
             dessas restrições e poderá ser rescindida por Abrir MEI Online a
             qualquer momento. Ao encerrar a visualização desses materiais ou
@@ -64,7 +64,7 @@ const pageTermos = () => {
             3. Isenção de responsabilidade
           </h1>
 
-          <div className="mt-4 text-justify text-sm">
+          <div className="mt-4 text-justify text-base">
             <ul className="list-decimal pl-5 space-y-2">
               <li>
                 Os materiais no site da Abrir MEI Online são fornecidos ‘como
@@ -89,7 +89,7 @@ const pageTermos = () => {
         <div className="flex flex-col items-start justify-center mt-8">
           <h1 className="font-semibold text-4xl">4. Limitações</h1>
 
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             Em nenhum caso o Abrir MEI Online ou seus fornecedores serão
             responsáveis ​​por quaisquer danos (incluindo, sem limitação, danos
             por perda de dados ou lucro ou devido a interrupção dos negócios)
@@ -105,7 +105,7 @@ const pageTermos = () => {
         {/* Precisão dos materiais */}
         <div className="flex flex-col items-start justify-center mt-8">
           <h1 className="font-semibold text-4xl">5. Precisão dos materiais</h1>
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             Os materiais exibidos no site do Abrir MEI Online podem incluir
             erros técnicos, tipográficos ou fotográficos. Abrir MEI Online não
             garante que qualquer material em seu site seja preciso, completo ou
@@ -117,7 +117,7 @@ const pageTermos = () => {
         {/* Links */}
         <div className="flex flex-col items-start justify-center mt-8">
           <h1 className="font-semibold text-4xl">6. Links</h1>
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             O Abrir MEI Online não analisou todos os sites vinculados ao seu
             site e não é responsável pelo conteúdo de nenhum site vinculado. A
             inclusão de qualquer link não implica endosso por Abrir MEI Online
@@ -128,7 +128,7 @@ const pageTermos = () => {
         {/* Modificações */}
         <div className="flex flex-col items-start justify-center mt-8">
           <h1 className="font-semibold text-3xl">Modificações</h1>
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             O Abrir MEI Online pode revisar estes termos de serviço do site a
             qualquer momento, sem aviso prévio. Ao usar este site, você concorda
             em ficar vinculado à versão atual desses termos de serviço.
@@ -137,7 +137,7 @@ const pageTermos = () => {
         {/* Lei aplicável */}
         <div className="flex flex-col items-start justify-center mt-8">
           <h1 className="font-semibold text-3xl">Lei aplicável</h1>
-          <p className="mt-4 text-justify text-sm">
+          <p className="mt-4 text-justify text-base">
             Estes termos e condições são regidos e interpretados de acordo com
             as leis do Abrir MEI Online e você se submete irrevogavelmente à
             jurisdição exclusiva dos tribunais naquele estado ou localidade.

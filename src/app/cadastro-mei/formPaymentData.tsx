@@ -135,7 +135,7 @@ const StepPayments = ({ register, setTermsAccepted }: Props) => {
         {paymentMethod === "card" && (
           <div className="flex flex-col gap-4">
             <div>
-              <label htmlFor="card_number" className="font-bold">
+              <label htmlFor="card_number" className=" text-gray-700">
                 Número do Cartão <span className="text-red-700">*</span>
               </label>
               <input
@@ -147,7 +147,7 @@ const StepPayments = ({ register, setTermsAccepted }: Props) => {
               />
             </div>
             <div>
-              <label htmlFor="card_name" className="font-bold">
+              <label htmlFor="card_name" className=" text-gray-700">
                 Nome impresso no Cartão <span className="text-red-700">*</span>
               </label>
               <input
@@ -159,7 +159,7 @@ const StepPayments = ({ register, setTermsAccepted }: Props) => {
               />
             </div>
             <div>
-              <label htmlFor="cpf" className="font-bold">
+              <label htmlFor="cpf" className=" text-gray-700">
                 CPF <span className="text-red-700">*</span>
               </label>
               <input
@@ -171,7 +171,7 @@ const StepPayments = ({ register, setTermsAccepted }: Props) => {
               />
             </div>
             <div>
-              <label htmlFor="installments" className="font-bold">
+              <label htmlFor="installments" className=" text-gray-700">
                 Quantidade de Parcelas <span className="text-red-700">*</span>
               </label>
               <select
@@ -190,7 +190,7 @@ const StepPayments = ({ register, setTermsAccepted }: Props) => {
               </select>
             </div>
             <div>
-              <label htmlFor="expiration_date" className="font-bold">
+              <label htmlFor="expiration_date" className=" text-gray-700">
                 Validade <span className="text-red-700">*</span>
               </label>
               <input
@@ -202,7 +202,7 @@ const StepPayments = ({ register, setTermsAccepted }: Props) => {
               />
             </div>
             <div>
-              <label htmlFor="cvv" className="font-bold">
+              <label htmlFor="cvv" className=" text-gray-700">
                 CVV <span className="text-red-700">*</span>
               </label>
               <input
@@ -219,7 +219,7 @@ const StepPayments = ({ register, setTermsAccepted }: Props) => {
         {paymentMethod === "pix" && (
           <div className="flex flex-col gap-4">
             <div>
-              <label htmlFor="payer_CPF" className="font-bold">
+              <label htmlFor="payer_CPF" className=" text-gray-700">
                 CPF do Pagador (Sem pontuação){" "}
                 <span className="text-red-700">*</span>
               </label>
