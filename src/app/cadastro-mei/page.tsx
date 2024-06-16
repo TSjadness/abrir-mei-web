@@ -11,8 +11,12 @@ import "react-toastify/dist/ReactToastify.css";
 
 function FormularioMei() {
   const [etapaAtual, setEtapaAtual] = useState(1);
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit, setValue, watch } = useForm();
   const [termsAccepted, setTermsAccepted] = useState(false);
+
+  
+
+  const card_information = {card_number: watch("card.card_number"), card_name: watch("card.card_name"), cpf: watch("card.cpf"), installments: watch("card.installments"), expiration_date: watch("card.expiration_date"), cvv: watch("card.cvv")};
 
   const submitForm = (data: any) => {
      if (!termsAccepted) { 
@@ -59,6 +63,7 @@ function FormularioMei() {
               <StepPaymentData
                 register={register}
                 setTermsAccepted={setTermsAccepted}
+                card_information={card_information}
               />
             )}
             <div className="flex justify-end">

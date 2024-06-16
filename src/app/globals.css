@@ -130,7 +130,55 @@ body {
     align-items: center;
     width: auto;
   }
+  .custom-payments{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+  }
+
+  .custom-payments-card{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+  }
+  .custom-template{
+    width: 100%;
+    padding: auto;
+  }
 }
+
+.radio-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.radio-dot {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 2px solid #ccc; 
+  background-color: white; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radio-input:checked + .radio-dot {
+  background-color: #1EA230; 
+  border-color: white; 
+}
+
+
+
+
+
+
+
 
 .accordion-enter {
   max-height: 0;
@@ -139,11 +187,11 @@ body {
 }
 
 .accordion-enter-active {
-  max-height: 500px; /* Ajuste conforme necessário */
+  max-height: 500px; 
 }
 
 .accordion-exit {
-  max-height: 500px; /* Ajuste conforme necessário */
+  max-height: 500px; 
   overflow: hidden;
 }
 

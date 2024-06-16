@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { CiCreditCard1 } from "react-icons/ci";
+import { FaPix } from "react-icons/fa6";
+import { useForm } from "react-hook-form";
 
 interface Props {
   register: any;
+  card_information: any;
   setTermsAccepted: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const StepPayments = ({ register, setTermsAccepted }: Props) => {
+const StepPayments = ({
+  register,
+  setTermsAccepted,
+  card_information,
+}: Props) => {
   const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
 
   const handleCheckboxChange = (method: string) => {
@@ -102,64 +110,133 @@ const StepPayments = ({ register, setTermsAccepted }: Props) => {
           </div>
         </div>
 
-        <div className="mb-4 flex flex-col justify-between gap-3 items-center">
+        <div className="mb-4 flex flex-col justify-between gap-3 items-center ">
           <label className=" w-full font-bold text-lg">
             Escolha a forma de pagamento
           </label>
-          <div className="w-full flex gap-2">
-            <input
-              type="checkbox"
-              name="payment_method"
-              value="card"
-              checked={paymentMethod === "card"}
-              onChange={() => handleCheckboxChange("card")}
-            />
-            <label htmlFor="card" className="font-semibold">
-              Cartão <span className="text-red-700">*</span>
-            </label>
-          </div>
-          <div className="w-full flex gap-2">
-            <input
-              type="checkbox"
-              name="payment_method"
-              value="pix"
-              checked={paymentMethod === "pix"}
-              onChange={() => handleCheckboxChange("pix")}
-            />
-            <label htmlFor="pix" className="font-semibold">
-              Pix <span className="text-red-700">*</span>
-            </label>
+
+          <div className=" w-full">
+            <div className="w-auto flex flex-row items-center gap-5 custom-payments">
+              <div
+                onClick={() => handleCheckboxChange("card")}
+                className={`w-full flex gap-2 rounded-2xl border-2 p-2 cursor-pointer ${
+                  paymentMethod === "card"
+                    ? "bg-blue-500 text-white"
+                    : "bg-white"
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="payment_method"
+                  value="card"
+                  checked={paymentMethod === "card"}
+                  onChange={() => handleCheckboxChange("card")}
+                />
+                <label
+                  htmlFor="card"
+                  className="font-semibold flex flex-row items-center gap-5 cursor-pointer"
+                >
+                  <CiCreditCard1 /> Cartão de Crédito{" "}
+                </label>
+              </div>
+
+              {/* <div
+                onClick={() => handleCheckboxChange("pix")}
+                className={`w-full flex gap-2 rounded-2xl border-2 p-2 cursor-pointer  ${
+                  paymentMethod === "pix"
+                    ? "bg-[#1EA230] text-white"
+                    : "bg-white"
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="payment_method"
+                  value="pix"
+                  checked={paymentMethod === "pix"}
+                  onChange={() => handleCheckboxChange("pix")}
+                />
+                <label
+                  htmlFor="pix"
+                  className="font-semibold flex flex-row items-center gap-5 cursor-pointer"
+                >
+                  <FaPix /> Pix
+                </label>
+              </div> */}
+              <div
+                onClick={() => handleCheckboxChange("pix")}
+                className={`w-full flex items-center gap-2 rounded-2xl border-2 p-2 cursor-pointer ${
+                  paymentMethod === "pix"
+                    ? "bg-[#1EA230] text-white"
+                    : "bg-white"
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="payment_method"
+                  value="pix"
+                  checked={paymentMethod === "pix"}
+                  onChange={() => handleCheckboxChange("pix")}
+                  className="radio-input" // Adicione a classe para o input radio
+                />
+                <span className="radio-dot"></span>{" "}
+                {/* Adicione a bolinha do radio button */}
+                <label
+                  htmlFor="pix"
+                  className="font-semibold flex flex-row items-center gap-5 cursor-pointer"
+                >
+                  <FaPix /> Pix
+                </label>
+              </div>
+            </div>
           </div>
         </div>
 
         {paymentMethod === "card" && (
-          <div className="flex flex-col gap-4">
-            <div>
-              <label htmlFor="card_number" className=" text-gray-700">
-                Número do Cartão <span className="text-red-700">*</span>
-              </label>
-              <input
-                type="text"
-                id="card_number"
-                placeholder="0000.0000.0000.0000"
-                {...register("card.card_number")}
-                className="w-full p-2 border"
-              />
+          <div className="flex flex-col gap-4 bg-blue-100 p-4 rounded">
+            <div className="bg-red-200 flex flex-row gap-5 custom-payments-card">
+              <div>
+                <div className="w-full">
+                  <label htmlFor="card_number" className="text-gray-700">
+                    Número do Cartão <span className="text-red-700">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="card_number"
+                    name="card_number"
+                    // value={cardNumber}
+                    placeholder="0000.0000.0000.0000"
+                    {...register("card.card_number")}
+                    className="w-full p-2 border"
+                  />
+                </div>
+
+                <div className="w-full">
+                  <label htmlFor="card_name" className="text-gray-700">
+                    Nome impresso no Cartão{" "}
+                    <span className="text-red-700">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="card_name"
+                    name="cardName"
+                    placeholder="Digite o nome aqui"
+                    {...register("card.card_name")}
+                    className="w-full p-2 border"
+                  />
+                </div>
+              </div>
+
+              <div className="bg-blue-700 w-auto p-5 rounded-lg m-2 text-white custom-template">
+                <p>Template Cartão {card_information?.card_number}</p>
+                <p>Número do Cartã {card_information?.card_name}</p>
+                <p>Nome do Titular</p>
+                <p>Validade</p>
+                <p>Código de Segurança</p>
+              </div>
             </div>
+
             <div>
-              <label htmlFor="card_name" className=" text-gray-700">
-                Nome impresso no Cartão <span className="text-red-700">*</span>
-              </label>
-              <input
-                type="text"
-                id="card_name"
-                placeholder="Digite o nome aqui"
-                {...register("card.card_name")}
-                className="w-full p-2 border"
-              />
-            </div>
-            <div>
-              <label htmlFor="cpf" className=" text-gray-700">
+              <label htmlFor="cpf" className="text-gray-700">
                 CPF <span className="text-red-700">*</span>
               </label>
               <input
@@ -171,18 +248,18 @@ const StepPayments = ({ register, setTermsAccepted }: Props) => {
               />
             </div>
             <div>
-              <label htmlFor="installments" className=" text-gray-700">
+              <label htmlFor="installments" className="text-gray-700">
                 Quantidade de Parcelas <span className="text-red-700">*</span>
               </label>
               <select
                 id="installments"
-                {...register("card. installments")}
+                {...register("card.installments")}
                 className="w-full p-2 border"
               >
                 <option value="1x R$ 193,00">1x R$ 193,00</option>
-                <option value="2x R$ 100,85">2x R$ 100,85 </option>
+                <option value="2x R$ 100,85">2x R$ 100,85</option>
                 <option value="3x R$ 68,22">3x R$ 68,22</option>
-                <option value="4x R$ 51,91">4x R$ 51,91 </option>
+                <option value="4x R$ 51,91">4x R$ 51,91</option>
                 <option value="5x R$ 42,13">5x R$ 42,13</option>
                 <option value="6x R$ 35,62">6x R$ 35,62</option>
                 <option value="7x R$ 30,9">7x R$ 30,97</option>
@@ -190,7 +267,7 @@ const StepPayments = ({ register, setTermsAccepted }: Props) => {
               </select>
             </div>
             <div>
-              <label htmlFor="expiration_date" className=" text-gray-700">
+              <label htmlFor="expiration_date" className="text-gray-700">
                 Validade <span className="text-red-700">*</span>
               </label>
               <input
@@ -202,7 +279,7 @@ const StepPayments = ({ register, setTermsAccepted }: Props) => {
               />
             </div>
             <div>
-              <label htmlFor="cvv" className=" text-gray-700">
+              <label htmlFor="cvv" className="text-gray-700">
                 CVV <span className="text-red-700">*</span>
               </label>
               <input
@@ -217,9 +294,9 @@ const StepPayments = ({ register, setTermsAccepted }: Props) => {
         )}
 
         {paymentMethod === "pix" && (
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 bg-blue-100 p-4 rounded">
             <div>
-              <label htmlFor="payer_CPF" className=" text-gray-700">
+              <label htmlFor="payer_CPF" className="text-gray-700">
                 CPF do Pagador (Sem pontuação){" "}
                 <span className="text-red-700">*</span>
               </label>
