@@ -50,7 +50,6 @@ export const dataSchemaStep4 = z.object({
   card: z.object({
     card_number: z.string().optional(),
     card_name: z.string().optional(),
-    cpf: z.string().optional(),
     installments: z.number().optional(),
     expiration_date: z.string().optional(),
     cvv: z.string().optional(),

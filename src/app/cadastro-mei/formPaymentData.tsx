@@ -28,19 +28,17 @@ const StepPayments = ({
   return (
     <div>
       <div className="mb-5">
-        <div className="text-3xl font-bold mb-10 custom-textStep">
+        <div className="text-xl font-semibold custom-step text-blue-500">
           <h2>Pagamentos</h2>
         </div>
+        <div
+          className="w-full pt-2 mb-5 border-b-2"
+          style={{ borderColor: "rgba(2, 108, 135, var(--tw-bg-opacity))" }}
+        ></div>
       </div>
 
       <div className="space-y-8 pt-2 ">
-        <div className="mb-7 flex flex-row justify-between gap-5 items-center">
-          <div className=" w-full flex items-center justify-center">
-            <label htmlFor="" className="font-bold text-xl">
-              Resumo da Abertura
-            </label>
-          </div>
-        </div>
+        <div className="mb-7 flex flex-row justify-between gap-5 items-center"></div>
 
         <div className=" w-full  flex flex-row gap-3 custom-step">
           <div className="w-full  text-black flex flex-col items-center justify-center gap-2">
@@ -73,7 +71,7 @@ const StepPayments = ({
 
         <div className=" flex flex-col justify-between gap-5 items-center">
           <div className=" w-full">
-            <label htmlFor="" className="font-bold text-xl">
+            <label htmlFor="" className="font-medium text-xl">
               Formas de pagamento
             </label>
             <div className=" text-justify flex flex-col gap-2">
@@ -140,11 +138,11 @@ const StepPayments = ({
                 </label>
               </div>
 
-              {/* <div
+              <div
                 onClick={() => handleCheckboxChange("pix")}
                 className={`w-full flex gap-2 rounded-2xl border-2 p-2 cursor-pointer  ${
                   paymentMethod === "pix"
-                    ? "bg-[#1EA230] text-white"
+                    ? "bg-blue-500 text-white"
                     : "bg-white"
                 }`}
               >
@@ -161,8 +159,8 @@ const StepPayments = ({
                 >
                   <FaPix /> Pix
                 </label>
-              </div> */}
-              <div
+              </div>
+              {/* <div
                 onClick={() => handleCheckboxChange("pix")}
                 className={`w-full flex items-center gap-2 rounded-2xl border-2 p-2 cursor-pointer ${
                   paymentMethod === "pix"
@@ -176,24 +174,23 @@ const StepPayments = ({
                   value="pix"
                   checked={paymentMethod === "pix"}
                   onChange={() => handleCheckboxChange("pix")}
-                  className="radio-input" // Adicione a classe para o input radio
+                  className="radio-input"
                 />
                 <span className="radio-dot"></span>{" "}
-                {/* Adicione a bolinha do radio button */}
                 <label
                   htmlFor="pix"
                   className="font-semibold flex flex-row items-center gap-5 cursor-pointer"
                 >
                   <FaPix /> Pix
                 </label>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
 
         {paymentMethod === "card" && (
-          <div className="flex flex-col gap-4 bg-blue-100 p-4 rounded">
-            <div className="bg-red-200 flex flex-row gap-5 custom-payments-card">
+          <div className="flex flex-col gap-4 ">
+            <div className=" flex flex-row gap-4 custom-payments-card">
               <div>
                 <div className="w-full">
                   <label htmlFor="card_number" className="text-gray-700">
@@ -206,7 +203,7 @@ const StepPayments = ({
                     // value={cardNumber}
                     placeholder="0000.0000.0000.0000"
                     {...register("card.card_number")}
-                    className="w-full p-2 border"
+                    className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
                   />
                 </div>
 
@@ -221,32 +218,76 @@ const StepPayments = ({
                     name="cardName"
                     placeholder="Digite o nome aqui"
                     {...register("card.card_name")}
-                    className="w-full p-2 border"
+                    className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
                   />
                 </div>
-              </div>
 
-              <div className="bg-blue-700 w-auto p-5 rounded-lg m-2 text-white custom-template">
-                <p>Template Cartão {card_information?.card_number}</p>
-                <p>Número do Cartã {card_information?.card_name}</p>
-                <p>Nome do Titular</p>
-                <p>Validade</p>
-                <p>Código de Segurança</p>
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="cpf" className="text-gray-700">
-                CPF <span className="text-red-700">*</span>
+                <div className="w-full">
+              <label htmlFor="expiration_date" className="text-gray-700">
+                Validade <span className="text-red-700">*</span>
               </label>
               <input
                 type="text"
-                id="cpf"
-                placeholder="000.000.000-00"
-                {...register("card.cpf")}
-                className="w-full p-2 border"
+                id="expiration_date"
+                placeholder="MM/AA"
+                {...register("card.expiration_date")}
+                className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
+              />
+               </div>
+
+               <div className="w-full">
+              <label htmlFor="cvv" className="text-gray-700">
+                CVV <span className="text-red-700">*</span>
+              </label>
+              <input
+                type="text"
+                id="cvv"
+                placeholder="000"
+                {...register("card.cvv")}
+                className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
               />
             </div>
+
+
+              </div>
+              <div className="bg-gradient-to-r from-blue-700 to-blue-900 w-[30rem] p-5 rounded-lg m-2 text-white custom-template shadow-lg">
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-xl font-semibold">
+                    Cartão de Crédito
+                  </span>
+                  <CiCreditCard1 size={30} />
+                </div>
+                <div className="mb-4">
+                  <span className="block text-sm">Número do Cartão</span>
+                  <span className="text-lg font-mono">
+                    {card_information?.card_number || "0000 0000 0000 0000"}
+                  </span>
+                </div>
+                <div className="mb-4">
+                  <span className="block text-sm">Nome do Titular</span>
+                  <span className="text-lg">
+                    {card_information?.card_name || "NOME DO TITULAR"}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <div>
+                    <span className="block text-sm">Validade</span>
+                    <span className="text-lg">
+                      {card_information?.expiration_date || "MM/AA"}
+                    </span>
+                  </div>
+                  <div>
+                    <span className="block text-sm">CVV</span>
+                    <span className="text-lg">
+                      {card_information?.cvv || "000"}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        
+
             <div>
               <label htmlFor="installments" className="text-gray-700">
                 Quantidade de Parcelas <span className="text-red-700">*</span>
@@ -254,7 +295,7 @@ const StepPayments = ({
               <select
                 id="installments"
                 {...register("card.installments")}
-                className="w-full p-2 border"
+                className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
               >
                 <option value="1x R$ 193,00">1x R$ 193,00</option>
                 <option value="2x R$ 100,85">2x R$ 100,85</option>
@@ -266,35 +307,13 @@ const StepPayments = ({
                 <option value="8x R$ 27,48">8x R$ 27,48</option>
               </select>
             </div>
-            <div>
-              <label htmlFor="expiration_date" className="text-gray-700">
-                Validade <span className="text-red-700">*</span>
-              </label>
-              <input
-                type="text"
-                id="expiration_date"
-                placeholder="MM/AA"
-                {...register("card.expiration_date")}
-                className="w-full p-2 border"
-              />
-            </div>
-            <div>
-              <label htmlFor="cvv" className="text-gray-700">
-                CVV <span className="text-red-700">*</span>
-              </label>
-              <input
-                type="text"
-                id="cvv"
-                placeholder="000"
-                {...register("card.cvv")}
-                className="w-full p-2 border"
-              />
-            </div>
+           
+            
           </div>
         )}
 
         {paymentMethod === "pix" && (
-          <div className="flex flex-col gap-4 bg-blue-100 p-4 rounded">
+          <div className="flex flex-col gap-4  p-4 rounded">
             <div>
               <label htmlFor="payer_CPF" className="text-gray-700">
                 CPF do Pagador (Sem pontuação){" "}
@@ -305,7 +324,8 @@ const StepPayments = ({
                 id="payer_CPF"
                 placeholder="Digite o CPF do pagador"
                 {...register("pix.payer_CPF")}
-                className="w-full p-2 border"
+                maxLength={14}
+                className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
               />
             </div>
           </div>
