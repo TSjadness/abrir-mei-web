@@ -173,6 +173,16 @@ body {
   border-color: white; 
 }
 
+.custom-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #1EA230;  */
+  margin: auto;
+  padding: 20px;
+}
+
 
 
 

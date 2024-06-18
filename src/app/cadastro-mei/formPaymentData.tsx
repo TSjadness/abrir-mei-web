@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CiCreditCard1 } from "react-icons/ci";
 import { FaPix } from "react-icons/fa6";
-import { useForm } from "react-hook-form";
+import InputMask from "react-input-mask";
 
 interface Props {
   register: any;
@@ -191,13 +191,15 @@ const StepPayments = ({
         {paymentMethod === "card" && (
           <div className="flex flex-col gap-4 ">
             <div className=" flex flex-row gap-4 custom-payments-card">
-              <div>
+              <div className="w-full">
                 <div className="w-full">
                   <label htmlFor="card_number" className="text-gray-700">
                     Número do Cartão <span className="text-red-700">*</span>
                   </label>
-                  <input
-                    type="text"
+                  <InputMask
+                    mask="9999.9999.9999.9999"
+                    maskChar=""
+                    //type="text"
                     id="card_number"
                     name="card_number"
                     // value={cardNumber}
@@ -223,34 +225,35 @@ const StepPayments = ({
                 </div>
 
                 <div className="w-full">
-              <label htmlFor="expiration_date" className="text-gray-700">
-                Validade <span className="text-red-700">*</span>
-              </label>
-              <input
-                type="text"
-                id="expiration_date"
-                placeholder="MM/AA"
-                {...register("card.expiration_date")}
-                className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
-              />
-               </div>
+                  <label htmlFor="expiration_date" className="text-gray-700">
+                    Validade <span className="text-red-700">*</span>
+                  </label>
+                  <InputMask
+                    mask="99/99"
+                    maskChar=""
+                    id="expiration_date"
+                    placeholder="MM/AA"
+                    {...register("card.expiration_date")}
+                    className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
+                  />
+                </div>
 
-               <div className="w-full">
-              <label htmlFor="cvv" className="text-gray-700">
-                CVV <span className="text-red-700">*</span>
-              </label>
-              <input
-                type="text"
-                id="cvv"
-                placeholder="000"
-                {...register("card.cvv")}
-                className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
-              />
-            </div>
-
-
+                <div className="w-full">
+                  <label htmlFor="cvv" className="text-gray-700">
+                    CVV <span className="text-red-700">*</span>
+                  </label>
+                  <InputMask
+                    mask="999"
+                    maskChar=""
+                    id="cvv"
+                    placeholder="000"
+                    {...register("card.cvv")}
+                    className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
+                  />
+                </div>
               </div>
-              <div className="bg-gradient-to-r from-blue-700 to-blue-900 w-[30rem] p-5 rounded-lg m-2 text-white custom-template shadow-lg">
+
+              <div className="bg-gradient-to-r from-blue-700 to-blue-900 w-[45rem] p-5 rounded-lg m-2 text-white custom-template shadow-lg">
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-xl font-semibold">
                     Cartão de Crédito
@@ -263,9 +266,9 @@ const StepPayments = ({
                     {card_information?.card_number || "0000 0000 0000 0000"}
                   </span>
                 </div>
-                <div className="mb-4">
-                  <span className="block text-sm">Nome do Titular</span>
-                  <span className="text-lg">
+                <div className="mb-4 w-58">
+                  <span className="block text-sm ">Nome do Titular</span>
+                  <span className="text-lg break-all  ">
                     {card_information?.card_name || "NOME DO TITULAR"}
                   </span>
                 </div>
@@ -286,8 +289,6 @@ const StepPayments = ({
               </div>
             </div>
 
-        
-
             <div>
               <label htmlFor="installments" className="text-gray-700">
                 Quantidade de Parcelas <span className="text-red-700">*</span>
@@ -307,8 +308,6 @@ const StepPayments = ({
                 <option value="8x R$ 27,48">8x R$ 27,48</option>
               </select>
             </div>
-           
-            
           </div>
         )}
 

@@ -45,63 +45,65 @@ function FormularioMei() {
   };
 
   return (
-    <div className="flex justify-center items-center px-4 max-w-3xl mx-auto pb-24 pt-14 sm:py-24 lg:pb-32 ">
-      <div className="bg-white p-6 rounded-lg shadow-sm shadow-gray-500  form-animation">
-        <form onSubmit={handleSubmit(submitForm)}>
-          <div className="mb-9 flex items-center justify-star bg-custom-gradient py-4 rounded-md pl-4 ">
-            <h1 className="text-2xl font-bold text-white">
-              ABERTURA DO CNPJ MEI
-            </h1>
-          </div>
-          <div className="space-y-11">
-            {etapaAtual === 1 && <StepUserData register={register} />}
-            {etapaAtual === 2 && <StepCNPJData register={register} />}
-            {etapaAtual === 3 && (
-              <StepAddressData register={register} setValue={setValue} />
-            )}
-            {etapaAtual === 4 && (
-              <StepPaymentData
-                register={register}
-                setTermsAccepted={setTermsAccepted}
-                card_information={card_information}
-              />
-            )}
-            <div className="flex justify-end">
-              <div className="space-x-5 space-y-5">
-                {etapaAtual > 1 && (
-                  <button
-                    type="button"
-                    onClick={voltarEtapa}
-                    className="bg-[#1EA230] px-8 py-2 hover:opacity-50 text-neutral-50 font-bold rounded-md"
-                  >
-                    Voltar
-                  </button>
-                )}
-                {etapaAtual < 4 && (
-                  <button
-                    type="button"
-                    onClick={proximoEtapa}
-                    className="bg-[#1EA230] px-8 py-2 hover:opacity-50 text-neutral-50 font-bold rounded-md"
-                  >
-                    Próximo
-                  </button>
-                )}
-                {etapaAtual === 4 && (
-                  <button
-                    type="submit"
-                    disabled={!termsAccepted}
-                    className={`bg-[#1EA230] px-8 py-2 hover:opacity-50 text-neutral-50 font-bold rounded-md ${
-                      !termsAccepted ? "cursor-not-allowed opacity-50" : ""
-                    }`}
-                  >
-                    Enviar
-                  </button>
-                )}
+    <div className="flex justify-center items-start min-h-screen pb-24 pt-14 sm:py-24 lg:pb-32">
+      <div className="w-full max-w-7xl  ">
+        <div className="p-6 rounded-lg shadow-sm shadow-gray-500 form-animation w-full">
+          <form onSubmit={handleSubmit(submitForm)}>
+            <div className="mb-9 flex items-center justify-start bg-custom-gradient py-4 rounded-md pl-4">
+              <h1 className="text-2xl font-bold text-white">
+                ABERTURA DO CNPJ MEI
+              </h1>
+            </div>
+            <div className="space-y-11">
+              {etapaAtual === 1 && <StepUserData register={register} />}
+              {etapaAtual === 2 && <StepCNPJData register={register} />}
+              {etapaAtual === 3 && (
+                <StepAddressData register={register} setValue={setValue} />
+              )}
+              {etapaAtual === 4 && (
+                <StepPaymentData
+                  register={register}
+                  setTermsAccepted={setTermsAccepted}
+                  card_information={card_information}
+                />
+              )}
+              <div className="flex justify-end">
+                <div className="space-x-5 space-y-5">
+                  {etapaAtual > 1 && (
+                    <button
+                      type="button"
+                      onClick={voltarEtapa}
+                      className="bg-[#1EA230] px-8 py-2 hover:opacity-50 text-neutral-50 font-bold rounded-md"
+                    >
+                      Voltar
+                    </button>
+                  )}
+                  {etapaAtual < 4 && (
+                    <button
+                      type="button"
+                      onClick={proximoEtapa}
+                      className="bg-[#1EA230] px-8 py-2 hover:opacity-50 text-neutral-50 font-bold rounded-md"
+                    >
+                      Próximo
+                    </button>
+                  )}
+                  {etapaAtual === 4 && (
+                    <button
+                      type="submit"
+                      disabled={!termsAccepted}
+                      className={`bg-[#1EA230] px-8 py-2 hover:opacity-50 text-neutral-50 font-bold rounded-md ${
+                        !termsAccepted ? "cursor-not-allowed opacity-50" : ""
+                      }`}
+                    >
+                      Enviar
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-          <ToastContainer />
-        </form>
+            <ToastContainer />
+          </form>
+        </div>
       </div>
     </div>
   );
