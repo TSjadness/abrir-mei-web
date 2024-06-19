@@ -1,19 +1,10 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
-import { useForm } from "react-hook-form";
-import { DataSchemaStep2, dataSchemaStep2 } from "./common";
-import InputMask from "react-input-mask";
-
 interface Props {
   register: any;
+  errors: any;
 }
 
-const StepData = ({ register }: Props) => {
-  const {
-    handleSubmit,
-    reset,
-    formState: { errors, isSubmitting },
-  } = useForm<DataSchemaStep2>({ resolver: zodResolver(dataSchemaStep2) });
+const StepData = ({ register, errors }: Props) => {
 
   return (
     <div>
@@ -40,9 +31,9 @@ const StepData = ({ register }: Props) => {
               {...register("capital_value")}
             />
             {errors.capital_value && (
-              <span className="text-red-600">
+              <p className="text-red-500 text-sm mt-1">
                 {errors.capital_value.message}
-              </span>
+              </p>
             )}
           </div>
 
@@ -65,11 +56,6 @@ const StepData = ({ register }: Props) => {
                 Acabador(a) De Calçados
               </option>
             </select>
-            {errors.main_occupation && (
-              <span className="text-red-600">
-                {errors.main_occupation.message}
-              </span>
-            )}
           </div>
         </div>
 
@@ -92,11 +78,6 @@ const StepData = ({ register }: Props) => {
                 Acabador(a) De Calçados
               </option>
             </select>
-            {errors.secondary_occupation && (
-              <span className="text-red-600">
-                {errors.secondary_occupation.message}
-              </span>
-            )}
           </div>
 
           <div className=" w-full">
@@ -123,11 +104,6 @@ const StepData = ({ register }: Props) => {
               </option>
               <option value="Televenda">Televenda</option>
             </select>
-            {errors.mode_operation && (
-              <span className="text-red-600">
-                {errors.mode_operation.message}
-              </span>
-            )}
           </div>
         </div>
       </div>

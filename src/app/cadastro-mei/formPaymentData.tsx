@@ -7,6 +7,8 @@ interface Props {
   register: any;
   card_information: any;
   setTermsAccepted: React.Dispatch<React.SetStateAction<boolean>>;
+  
+
 }
 
 const StepPayments = ({

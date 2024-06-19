@@ -6,16 +6,14 @@ import InputMask from "react-input-mask";
 
 interface Props {
   register: any;
+
 }
 
 const StepDataPersonal = ({ register }: Props) => {
-  const {
-    handleSubmit,
-    reset,
-    setValue,
-    watch,
-    formState: { errors },
-  } = useForm<DataSchemaStep1>({ resolver: zodResolver(dataSchemaStep1) });
+  const {} = useForm<DataSchemaStep1>({
+    resolver: zodResolver(dataSchemaStep1),
+  });
+
 
   return (
     <div>
@@ -37,13 +35,12 @@ const StepDataPersonal = ({ register }: Props) => {
             <input
               type="text"
               id="name"
+              name="name"
               placeholder="Digite seu nome completo"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2 outline-blue-500/50 "
               {...register("name")}
             />
-            {errors.name && (
-              <span className="text-red-600">{errors.name.message}</span>
-            )}
+            
           </div>
 
           <div className=" w-full">
@@ -56,9 +53,6 @@ const StepDataPersonal = ({ register }: Props) => {
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
               {...register("email")}
             />
-            {errors.email && (
-              <span className="text-red-600">{errors.email.message}</span>
-            )}
           </div>
         </div>
 

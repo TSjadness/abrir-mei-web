@@ -4,22 +4,36 @@ import StepUserData from "@/app/cadastro-mei/formUserData";
 import StepCNPJData from "@/app/cadastro-mei/formCNPJData";
 import StepAddressData from "@/app/cadastro-mei/formAddressData";
 import StepPaymentData from "@/app/cadastro-mei/formPaymentData";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
 
 function FormularioMei() {
   const [etapaAtual, setEtapaAtual] = useState(1);
-  const { register, handleSubmit, setValue, watch } = useForm();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm({});
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const router = useRouter();
 
-  
-
-  const card_information = {card_number: watch("card.card_number"), card_name: watch("card.card_name"), cpf: watch("card.cpf"), installments: watch("card.installments"), expiration_date: watch("card.expiration_date"), cvv: watch("card.cvv")};
+  const card_information = {
+    card_number: watch("card.card_number"),
+    card_name: watch("card.card_name"),
+    cpf: watch("card.cpf"),
+    installments: watch("card.installments"),
+    expiration_date: watch("card.expiration_date"),
+    cvv: watch("card.cvv"),
+  };
 
   const submitForm = (data: any) => {
-     if (!termsAccepted) { 
+    if (!termsAccepted) {
       toast.error("Por favor, aceite os termos e condições para continuar.");
       return;
     }
@@ -27,9 +41,14 @@ function FormularioMei() {
     submitData.append("data", JSON.stringify(data));
     console.log(submitData);
     console.log(data, "data");
+    setSubmitted(true);
+
     toast.success("Formulário cadastrado com sucesso!", {
       autoClose: 2000,
     });
+    setTimeout(() => {
+      router.push("/confirmacao-de-pagamento");
+    }, 2000);
   };
 
   const proximoEtapa = () => {
@@ -56,7 +75,9 @@ function FormularioMei() {
             </div>
             <div className="space-y-11">
               {etapaAtual === 1 && <StepUserData register={register} />}
-              {etapaAtual === 2 && <StepCNPJData register={register} />}
+              {etapaAtual === 2 && (
+                <StepCNPJData register={register} errors={errors} />
+              )}
               {etapaAtual === 3 && (
                 <StepAddressData register={register} setValue={setValue} />
               )}
