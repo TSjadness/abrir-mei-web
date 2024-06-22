@@ -1,10 +1,8 @@
 import React from "react";
-interface Props {
-  register: any;
-  errors: any;
-}
+import { useFormContext } from "react-hook-form";
 
-const StepData = ({ register, errors }: Props) => {
+const EtapaDadosCNPJ = () => {
+  const { register, formState: { errors } } = useFormContext();
 
   return (
     <div>
@@ -32,7 +30,7 @@ const StepData = ({ register, errors }: Props) => {
             />
             {errors.capital_value && (
               <p className="text-red-500 text-sm mt-1">
-                {errors.capital_value.message}
+                {errors.capital_value.message as string}
               </p>
             )}
           </div>
@@ -56,6 +54,11 @@ const StepData = ({ register, errors }: Props) => {
                 Acabador(a) De Calçados
               </option>
             </select>
+            {errors.main_occupation && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.main_occupation.message as string}
+              </p>
+            )}
           </div>
         </div>
 
@@ -78,6 +81,11 @@ const StepData = ({ register, errors }: Props) => {
                 Acabador(a) De Calçados
               </option>
             </select>
+            {errors.secondary_occupation && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.secondary_occupation.message as string}
+              </p>
+            )}
           </div>
 
           <div className=" w-full">
@@ -104,6 +112,11 @@ const StepData = ({ register, errors }: Props) => {
               </option>
               <option value="Televenda">Televenda</option>
             </select>
+            {errors.mode_operation && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.mode_operation.message as string}
+              </p>
+            )}
           </div>
         </div>
       </div>
@@ -111,4 +124,4 @@ const StepData = ({ register, errors }: Props) => {
   );
 };
 
-export default StepData;
+export default EtapaDadosCNPJ;

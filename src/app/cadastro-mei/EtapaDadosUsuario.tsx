@@ -1,19 +1,12 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import { DataSchemaStep1, dataSchemaStep1 } from "./common";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useFormContext } from "react-hook-form";
 import InputMask from "react-input-mask";
 
-interface Props {
-  register: any;
-
-}
-
-const StepDataPersonal = ({ register }: Props) => {
-  const {} = useForm<DataSchemaStep1>({
-    resolver: zodResolver(dataSchemaStep1),
-  });
-
+const EtapaDadosUsuario = () => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <div>
@@ -35,12 +28,15 @@ const StepDataPersonal = ({ register }: Props) => {
             <input
               type="text"
               id="name"
-              name="name"
               placeholder="Digite seu nome completo"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2 outline-blue-500/50 "
               {...register("name")}
             />
-            
+            {errors.name && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.name.message as string}
+              </p>
+            )}
           </div>
 
           <div className=" w-full">
@@ -53,6 +49,11 @@ const StepDataPersonal = ({ register }: Props) => {
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
               {...register("email")}
             />
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.email.message as string}
+              </p>
+            )}
           </div>
         </div>
 
@@ -69,6 +70,11 @@ const StepDataPersonal = ({ register }: Props) => {
               {...register("cpf")}
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
             />
+            {errors.cpf && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.cpf.message as string}
+              </p>
+            )}
           </div>
           <div className=" w-full">
             <label htmlFor="" className=" text-gray-700">
@@ -84,6 +90,11 @@ const StepDataPersonal = ({ register }: Props) => {
               {...register("phone")}
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
             />
+            {errors.phone && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.phone.message as string}
+              </p>
+            )}
           </div>
         </div>
 
@@ -101,6 +112,11 @@ const StepDataPersonal = ({ register }: Props) => {
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
               {...register("rg")}
             />
+            {errors.rg && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.rg.message as string}
+              </p>
+            )}
           </div>
 
           <div className=" w-full">
@@ -182,6 +198,11 @@ const StepDataPersonal = ({ register }: Props) => {
               <option value="SJTS">SJTS</option>
               <option value="SPTC">SPTC</option>
             </select>
+            {errors.rg_issuer && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.rg_issuer.message as string}
+              </p>
+            )}
           </div>
 
           <div className=" w-full">
@@ -222,6 +243,11 @@ const StepDataPersonal = ({ register }: Props) => {
               <option value="Sergipe">SE</option>
               <option value="Tocantins">TO</option>
             </select>
+            {errors.rg_state && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.rg_state.message as string}
+              </p>
+            )}
           </div>
         </div>
 
@@ -237,6 +263,11 @@ const StepDataPersonal = ({ register }: Props) => {
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
               {...register("mother_name")}
             />
+            {errors.mother_name && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.mother_name.message as string}
+              </p>
+            )}
           </div>
 
           <div className=" w-full">
@@ -250,6 +281,11 @@ const StepDataPersonal = ({ register }: Props) => {
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
               {...register("birth_date")}
             />
+            {errors.birth_date && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.birth_date.message as string}
+              </p>
+            )}
           </div>
         </div>
       </div>
@@ -257,4 +293,4 @@ const StepDataPersonal = ({ register }: Props) => {
   );
 };
 
-export default StepDataPersonal;
+export default EtapaDadosUsuario;

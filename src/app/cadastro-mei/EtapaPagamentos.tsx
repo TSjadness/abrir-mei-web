@@ -2,31 +2,40 @@ import React, { useEffect, useState } from "react";
 import { CiCreditCard1 } from "react-icons/ci";
 import { FaPix } from "react-icons/fa6";
 import InputMask from "react-input-mask";
+import { useFormContext } from "react-hook-form";
 
-interface Props {
-  register: any;
-  card_information: any;
-  setTermsAccepted: React.Dispatch<React.SetStateAction<boolean>>;
-  
+const EtapaPagamentos = ({
+  termsAccepted,
+  onTermsCheckboxChange,
+}: {
+  termsAccepted: boolean;
+  onTermsCheckboxChange: any;
+}) => {
+  const {
+    register,
+    watch,
+    formState: { errors },
+  } = useFormContext();
 
-}
-
-const StepPayments = ({
-  register,
-  setTermsAccepted,
-  card_information,
-}: Props) => {
+  const card_information = {
+    card_number: watch("card.card_number"),
+    card_name: watch("card.card_name"),
+    cpf: watch("card.cpf"),
+    installments: watch("card.installments"),
+    expiration_date: watch("card.expiration_date"),
+    cvv: watch("card.cvv"),
+  };
   const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
 
   const handleCheckboxChange = (method: string) => {
     setPaymentMethod(method);
   };
+
   const handleTermsCheckboxChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setTermsAccepted(e.target.checked);
+    onTermsCheckboxChange(e.target.checked);
   };
-
   return (
     <div>
       <div className="mb-5">
@@ -44,30 +53,48 @@ const StepPayments = ({
 
         <div className=" w-full  flex flex-row gap-3 custom-step">
           <div className="w-full  text-black flex flex-col items-center justify-center gap-2">
-            <div className="font-bold text-xl bg-[#1EA230] w-full flex items-center justify-center">
-              <label htmlFor="" className="font-bold text-white">
+            <div className="font-bold text-xl w-full flex items-center justify-start">
+              <label htmlFor="" className="font-bold text-black">
                 Produto
               </label>
             </div>
-            <div className="font-semibold">Abertura do CNPJ MEI</div>
+            <div className="w-full  text-black flex flex-col items-start justify-start gap-2">
+            <div className="font-semibold ">Abertura do CNPJ MEI</div>
+            </div>
           </div>
 
           <div className="w-full  text-black flex flex-col items-center justify-center gap-2">
-            <div className="font-bold text-xl bg-[#1EA230] w-full flex items-center justify-center">
-              <label htmlFor="" className="font-bold text-white">
+            <div className="font-bold text-xl  w-full flex items-center justify-start">
+              <label htmlFor="" className="font-bold text-black">
                 Quantidade
               </label>
             </div>
+            <div className="w-full  text-black flex flex-col items-start justify-start gap-2">
             <div className="font-semibold">1</div>
+            </div>
           </div>
 
           <div className="w-full  text-black flex flex-col items-center justify-center gap-2">
-            <div className="font-bold text-xl bg-[#1EA230] w-full flex items-center justify-center">
-              <label htmlFor="" className="font-bold text-white">
+            <div className="font-bold text-xl  w-full flex items-center justify-start">
+              <label htmlFor="" className="font-bold text-black">
                 Subtotal
               </label>
             </div>
-            <div className="font-semibold">R$ 193,00</div>
+            <div className="w-full  text-black flex flex-col items-start justify-start gap-2">
+              <div className="font-semibold">R$ 193,00</div>
+            </div>
+            
+          </div>
+        </div>
+
+        <div className=" flex flex-col">
+          <div
+            className="w-full pt-2 mb-2 border-b-2 border-black"
+          ></div>
+          <div className=" flex items-center justify-end">
+            <label htmlFor="" className="font-semibold text-black">
+              Total: R$ 193,00
+            </label>
           </div>
         </div>
 
@@ -99,6 +126,7 @@ const StepPayments = ({
                 name="terms_accepted"
                 className=" text-2xl"
                 onChange={handleTermsCheckboxChange}
+                checked={termsAccepted}
               />
               <label htmlFor="">
                 Li e concordo com os{" "}
@@ -162,30 +190,6 @@ const StepPayments = ({
                   <FaPix /> Pix
                 </label>
               </div>
-              {/* <div
-                onClick={() => handleCheckboxChange("pix")}
-                className={`w-full flex items-center gap-2 rounded-2xl border-2 p-2 cursor-pointer ${
-                  paymentMethod === "pix"
-                    ? "bg-[#1EA230] text-white"
-                    : "bg-white"
-                }`}
-              >
-                <input
-                  type="radio"
-                  name="payment_method"
-                  value="pix"
-                  checked={paymentMethod === "pix"}
-                  onChange={() => handleCheckboxChange("pix")}
-                  className="radio-input"
-                />
-                <span className="radio-dot"></span>{" "}
-                <label
-                  htmlFor="pix"
-                  className="font-semibold flex flex-row items-center gap-5 cursor-pointer"
-                >
-                  <FaPix /> Pix
-                </label>
-              </div> */}
             </div>
           </div>
         </div>
@@ -201,10 +205,7 @@ const StepPayments = ({
                   <InputMask
                     mask="9999.9999.9999.9999"
                     maskChar=""
-                    //type="text"
                     id="card_number"
-                    name="card_number"
-                    // value={cardNumber}
                     placeholder="0000.0000.0000.0000"
                     {...register("card.card_number")}
                     className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
@@ -219,7 +220,6 @@ const StepPayments = ({
                   <input
                     type="text"
                     id="card_name"
-                    name="cardName"
                     placeholder="Digite o nome aqui"
                     {...register("card.card_name")}
                     className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
@@ -316,15 +316,16 @@ const StepPayments = ({
         {paymentMethod === "pix" && (
           <div className="flex flex-col gap-4  p-4 rounded">
             <div>
-              <label htmlFor="payer_CPF" className="text-gray-700">
+              <label htmlFor="cpf" className="text-gray-700">
                 CPF do Pagador (Sem pontuação){" "}
                 <span className="text-red-700">*</span>
               </label>
-              <input
-                type="text"
-                id="payer_CPF"
+              <InputMask
+                mask="999.999.999-99"
+                maskChar=""
+                id="pix.cpf"
                 placeholder="Digite o CPF do pagador"
-                {...register("pix.payer_CPF")}
+                {...register("pix.cpf")}
                 maxLength={14}
                 className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
               />
@@ -336,4 +337,4 @@ const StepPayments = ({
   );
 };
 
-export default StepPayments;
+export default EtapaPagamentos;

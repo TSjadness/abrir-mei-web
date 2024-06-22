@@ -1,22 +1,14 @@
 import React, { useState } from "react";
-import { DataSchemaStep3, dataSchemaStep3 } from "./common";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useFormContext } from "react-hook-form";
 import axios from "axios";
 import InputMask from "react-input-mask";
 
-interface Props {
-  register: any;
-  setValue: any;
-}
-
-const StepAddress = ({ register, setValue }: Props) => {
+const EtapaDadosEndereço = () => {
   const {
-    handleSubmit,
-    reset,
-    watch,
+    register,
+    setValue,
     formState: { errors },
-  } = useForm<DataSchemaStep3>({ resolver: zodResolver(dataSchemaStep3) });
+  } = useFormContext();
 
   const [cepData, setCepData] = useState({});
   const [alt_cepData, alt_setCepData] = useState({});
@@ -36,22 +28,21 @@ const StepAddress = ({ register, setValue }: Props) => {
     }
   };
 
-   const fetchAltCEPData = async (alt_cep: string) => {
-     try {
-       const response = await axios.get(
-         `https://viacep.com.br/ws/${alt_cep}/json/`
-       );
-       const data = response.data;
-       setCepData(data);
-       setValue("alt_address", data.logradouro || "");
-       setValue("alt_neighborhood", data.bairro || "");
-       setValue("alt_city", data.localidade || "");
-       setValue("alt_state", data.uf || "");
-     } catch (error) {
-       console.error("Erro ao buscar dados do CEP:", error);
-     }
-   };
-
+  const fetchAltCEPData = async (alt_cep: string) => {
+    try {
+      const response = await axios.get(
+        `https://viacep.com.br/ws/${alt_cep}/json/`
+      );
+      const data = response.data;
+      setCepData(data);
+      setValue("alt_address", data.logradouro || "");
+      setValue("alt_neighborhood", data.bairro || "");
+      setValue("alt_city", data.localidade || "");
+      setValue("alt_state", data.uf || "");
+    } catch (error) {
+      console.error("Erro ao buscar dados do CEP:", error);
+    }
+  };
 
   return (
     <div>
@@ -78,6 +69,11 @@ const StepAddress = ({ register, setValue }: Props) => {
               placeholder="00000-000"
               className="w-full border border-neutral-200 dark:border-neutral-700 rounded-md p-2"
             />
+            {errors.cep && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.cep.message as string}
+              </p>
+            )}
           </div>
           <div className=" w-full">
             <label htmlFor="city" className=" text-gray-700">
@@ -226,10 +222,7 @@ const StepAddress = ({ register, setValue }: Props) => {
 
             <div className="mb-7 flex flex-row justify-between gap-5 items-center custom-step">
               <div className="w-full">
-                <label
-                  htmlFor="alt_address"
-                  className=" text-gray-700"
-                >
+                <label htmlFor="alt_address" className=" text-gray-700">
                   Endereço <span className="text-red-700">*</span>
                 </label>
                 <input
@@ -270,10 +263,7 @@ const StepAddress = ({ register, setValue }: Props) => {
 
             <div className="mb-7 flex flex-row justify-between gap-5 items-center custom-step">
               <div className=" w-full">
-                <label
-                  htmlFor="alt_complement"
-                  className=" text-gray-700"
-                >
+                <label htmlFor="alt_complement" className=" text-gray-700">
                   Complemento <span className="text-red-700">*</span>
                 </label>
                 <input
@@ -306,10 +296,7 @@ const StepAddress = ({ register, setValue }: Props) => {
 
         <div className="mb-7 flex flex-row justify-between gap-5 items-center custom-step">
           <div className=" w-full">
-            <label
-              htmlFor="confirm_password"
-              className=" text-gray-700"
-            >
+            <label htmlFor="confirm_password" className=" text-gray-700">
               Confirme a Senha GOV.BR / Brasil Cidadão (Se não possui, deixe em
               branco)
               <span className="text-red-700">*</span>
@@ -328,4 +315,4 @@ const StepAddress = ({ register, setValue }: Props) => {
   );
 };
 
-export default StepAddress;
+export default EtapaDadosEndereço;
