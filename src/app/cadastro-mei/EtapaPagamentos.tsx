@@ -51,7 +51,7 @@ const EtapaPagamentos = ({
       <div className="space-y-8 pt-2 ">
         <div className="mb-7 flex flex-row justify-between gap-5 items-center"></div>
 
-        <div className=" w-full  flex flex-row gap-3 custom-step">
+        <div className=" w-full  flex flex-row gap-3 custom-step ">
           <div className="w-full  text-black flex flex-col items-center justify-center gap-2">
             <div className="font-bold text-xl w-full flex items-center justify-start">
               <label htmlFor="" className="font-bold text-black">

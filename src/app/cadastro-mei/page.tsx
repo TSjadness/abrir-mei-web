@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import EtapaPagamentos from "./EtapaPagamentos";
 import { schema } from "./common";
+import { Oval } from "react-loader-spinner";
 
 const getEtapaSchema = (etapa: any) => {
   switch (etapa) {
@@ -67,6 +68,7 @@ const getEtapaSchema = (etapa: any) => {
 
 function FormularioMei() {
   const [etapaAtual, setEtapaAtual] = useState(1);
+  const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const router = useRouter();
@@ -107,12 +109,23 @@ function FormularioMei() {
       });
       return;
     }
-
-    if (result) {
-      if (etapaAtual < 4) {
+    if (etapaAtual === 3) {
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
         setEtapaAtual(etapaAtual + 1);
-      }
+        window.scrollTo(0, 0);
+      }, 2000);
+    } else {
+      setEtapaAtual(etapaAtual + 1);
+      window.scrollTo(0, 0);
     }
+
+    // if (result) {
+    //   if (etapaAtual < 4) {
+    //     setEtapaAtual(etapaAtual + 1);
+    //   }
+    // }
   };
 
   const voltarEtapa = () => {
@@ -128,8 +141,24 @@ function FormularioMei() {
   return (
     <FormProvider {...methods}>
       <div className="flex justify-center items-start min-h-screen pb-24 pt-14 sm:py-24 lg:pb-32">
-        <div className="w-full max-w-7xl">
+        <div className="w-full max-w-7xl m-5">
           <div className="p-6 rounded-lg shadow-sm shadow-gray-500 form-animation w-full">
+            {loading && (
+              <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-75 z-50 h-screen w-screen">
+                <Oval
+                  height={80}
+                  width={80}
+                  color="#1EA230"
+                  wrapperStyle={{}}
+                  wrapperClass=""
+                  visible={true}
+                  ariaLabel="oval-loading"
+                  secondaryColor="#d3d3d3"
+                  strokeWidth={2}
+                  strokeWidthSecondary={2}
+                />
+              </div>
+            )}
             <form onSubmit={handleSubmit(submitForm)}>
               <div className="mb-9 flex items-center justify-start bg-custom-gradient py-4 rounded-md pl-4">
                 <h1 className="text-2xl font-bold text-white">
@@ -182,8 +211,6 @@ function FormularioMei() {
                   </div>
                 </div>
               </div>
-
-              <ToastContainer />
             </form>
           </div>
         </div>
