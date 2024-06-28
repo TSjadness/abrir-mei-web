@@ -71,9 +71,13 @@ function FormularioMei() {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState("");
   const router = useRouter();
   const methods = useForm({
     resolver: zodResolver(schema),
+    defaultValues: {
+      product_id: 1,
+    }
   });
 
   const {
@@ -85,8 +89,11 @@ function FormularioMei() {
   } = methods;
 
   const submitForm = (data: any) => {
+    data.product_id = "1";
+    
     const submitData = new FormData();
     submitData.append("data", JSON.stringify(data));
+    submitData.append("payment_method", paymentMethod);
     console.log(submitData);
     console.log(data, "data");
     setSubmitted(true);
@@ -97,6 +104,13 @@ function FormularioMei() {
     //  setTimeout(() => {
     //    router.push("/confirmacao-de-pagamento");
     //  }, 2000);
+     setTimeout(() => {
+       router.push(
+         `/confirmacao-de-pagamento?payment_method=${encodeURIComponent(
+           paymentMethod
+         )}`
+       );
+     }, 2000);
   };
 
   const proximoEtapa = async () => {
@@ -120,7 +134,6 @@ function FormularioMei() {
       setEtapaAtual(etapaAtual + 1);
       window.scrollTo(0, 0);
     }
-
     // if (result) {
     //   if (etapaAtual < 4) {
     //     setEtapaAtual(etapaAtual + 1);
@@ -174,6 +187,7 @@ function FormularioMei() {
                   <EtapaPagamentos
                     termsAccepted={termsAccepted}
                     onTermsCheckboxChange={handleTermsCheckboxChange}
+                    onPaymentMethodChange={setPaymentMethod}
                   />
                 )}
 

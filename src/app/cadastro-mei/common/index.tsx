@@ -2,6 +2,7 @@ import { z } from "zod";
 
 
 export const schema = z.object({
+  product_id: z.number().optional(),
   //step1
   name: z.string().optional(),
   email: z.string().max(100).optional(),
@@ -37,22 +38,26 @@ export const schema = z.object({
   same_address: z.string().optional(),
   gov_password: z.string().optional(),
   confirm_password: z.string().optional(),
-  
+
   //step4
   payment_method: z.string().optional(),
   terms_accepted: z.boolean().optional(),
 
-  card: z.object({
-    card_number: z.string().optional(),
-    card_name: z.string().optional(),
-    installments: z.string().optional(),
-    expiration_date: z.string().optional(),
-    cvv: z.string().optional(),
-  }).optional(),
+  card: z
+    .object({
+      card_number: z.string().optional(),
+      card_name: z.string().optional(),
+      installments: z.string().optional(),
+      expiration_date: z.string().optional(),
+      cvv: z.string().optional(),
+    })
+    .optional(),
 
-  pix: z.object({
-    cpf: z.string().optional(),
-  }).optional(),
+  pix: z
+    .object({
+      cpf: z.string().optional(),
+    })
+    .optional(),
 });
 
 

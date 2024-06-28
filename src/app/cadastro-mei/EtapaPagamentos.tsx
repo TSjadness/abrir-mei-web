@@ -7,9 +7,11 @@ import { useFormContext } from "react-hook-form";
 const EtapaPagamentos = ({
   termsAccepted,
   onTermsCheckboxChange,
+  onPaymentMethodChange,
 }: {
   termsAccepted: boolean;
   onTermsCheckboxChange: any;
+  onPaymentMethodChange: any;
 }) => {
   const {
     register,
@@ -29,6 +31,7 @@ const EtapaPagamentos = ({
 
   const handleCheckboxChange = (method: string) => {
     setPaymentMethod(method);
+    onPaymentMethodChange(method);
   };
 
   const handleTermsCheckboxChange = (
@@ -59,7 +62,7 @@ const EtapaPagamentos = ({
               </label>
             </div>
             <div className="w-full  text-black flex flex-col items-start justify-start gap-2">
-            <div className="font-semibold ">Abertura do CNPJ MEI</div>
+              <div className="font-semibold ">Abertura do CNPJ MEI</div>
             </div>
           </div>
 
@@ -70,7 +73,7 @@ const EtapaPagamentos = ({
               </label>
             </div>
             <div className="w-full  text-black flex flex-col items-start justify-start gap-2">
-            <div className="font-semibold">1</div>
+              <div className="font-semibold">1</div>
             </div>
           </div>
 
@@ -83,14 +86,11 @@ const EtapaPagamentos = ({
             <div className="w-full  text-black flex flex-col items-start justify-start gap-2">
               <div className="font-semibold">R$ 193,00</div>
             </div>
-            
           </div>
         </div>
 
         <div className=" flex flex-col">
-          <div
-            className="w-full pt-2 mb-2 border-b-2 border-black"
-          ></div>
+          <div className="w-full pt-2 mb-2 border-b-2 border-black"></div>
           <div className=" flex items-center justify-end">
             <label htmlFor="" className="font-semibold text-black">
               Total: R$ 193,00
